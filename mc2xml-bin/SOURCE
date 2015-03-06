@@ -1,0 +1,6 @@
+#!/bin/sh
+
+OWNER="Y"
+SOURCETYPE="AUR"
+SOURCEPATH="https://aur.archlinux.org/packages/mc/mc2xml-bin/mc2xml-bin.tar.gz"
+

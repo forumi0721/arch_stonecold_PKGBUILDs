@@ -1,0 +1,24 @@
+# Maintainer: StoneCold <forumi0721[at]gmail[dot]com>
+
+pkgname=("autostart")
+pkgver=0.1
+pkgrel=1
+pkgdesc="Autostart script service"
+arch=("any")
+license=("LGPL")
+depends=("sh" "findutils")
+install="${pkgname}.install"
+source=("${pkgname}.tar.xz")
+md5sums=("7e807f8d89a81731acfd96899b9c1159")
+
+package() {
+  install -dm755 "${pkgdir}/usr/lib/systemd/system"
+  install -Dm644 "${srcdir}/${pkgname}/autostart.service" "${pkgdir}/usr/lib/systemd/system/"
+
+  install -dm755 "${pkgdir}/usr/bin"
+  install -Dm755 "${srcdir}/${pkgname}/autostart.sh" "${pkgdir}/usr/bin/"
+
+  install -dm755 "${pkgdir}/etc/autostart.d"
+}
+
+# vim:set ts=2 sw=2 et:

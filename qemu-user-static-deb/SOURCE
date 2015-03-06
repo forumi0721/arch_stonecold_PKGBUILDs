@@ -1,0 +1,6 @@
+#!/bin/sh
+
+OWNER="Y"
+SOURCETYPE="AUR"
+SOURCEPATH="https://aur.archlinux.org/packages/qe/qemu-user-static-deb/qemu-user-static-deb.tar.gz"
+

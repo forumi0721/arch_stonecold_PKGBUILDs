@@ -1,0 +1,6 @@
+#!/bin/sh
+
+OWNER="Y"
+SOURCETYPE="AUR"
+SOURCEPATH="https://aur.archlinux.org/packages/x-/x-tools-armv5/x-tools-armv5.tar.gz"
+
