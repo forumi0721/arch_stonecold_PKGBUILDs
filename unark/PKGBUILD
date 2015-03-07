@@ -1,0 +1,33 @@
+# Maintainer: StoneCold <forumi0721[at]gmail[dot]com>
+
+pkgname=("unark-git")
+_gitname="unark"
+pkgver=20110515.5.b8f24c8
+pkgrel=1
+pkgdesc="UnArk is a simple archive extractor program for Linux."
+arch=("i686" "x86_64")
+url="https://github.com/seungwon0/UnArk"
+license=("custom")
+makedepends=("git")
+source=("${_gitname}::git+https://github.com/seungwon0/UnArk.git")
+md5sums=("SKIP")
+
+pkgver() {
+  cd "${srcdir}/${_gitname}"
+  echo "$(git log -1 --format="%cd" --date=short | sed "s/-//g").$(git rev-list --count HEAD).$(git rev-parse --short HEAD)"
+}
+
+build() {
+  cd "${srcdir}/${_gitname}"
+  make
+}
+
+package() {
+  install -dm755 "${pkgdir}/usr/local/bin"
+  install -Dm755 "${srcdir}/${_gitname}/unark" "${pkgdir}/usr/local/bin/"
+
+  install -dm755 "${pkgdir}/usr/local/lib"
+  install -Dm755 "${srcdir}/${_gitname}/libark32.so" "${pkgdir}/usr/local/lib/"
+}
+
+# vim:set ts=2 sw=2 et:
