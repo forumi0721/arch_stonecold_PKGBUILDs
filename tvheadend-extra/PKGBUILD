@@ -2,7 +2,7 @@
 
 pkgname=("tvheadend-extra")
 pkgver=0.1
-pkgrel=1
+pkgrel=2
 pkgdesc="tvheadend extra EPG and frequencies"
 arch=("any")
 url="https://tvheadend.org/"
