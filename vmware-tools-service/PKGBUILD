@@ -2,7 +2,7 @@
 
 pkgname=("vmware-tools-service")
 pkgver=0.1
-pkgrel=1
+pkgrel=2
 pkgdesc="VMWare tools systemd service"
 arch=("i686" "x86_64")
 license=("LGPL")
@@ -11,8 +11,6 @@ source=("vmware-tools-service.service")
 md5sums=("a0180a3eaa7c5220aa2be0d7553eb6a6")
 
 package() {
-  install -dm755 "${pkgdir}/usr/lib/systemd/system"
-  install -Dm644 "${srcdir}/vmware-tools-service.service" "${pkgdir}/usr/lib/systemd/system/"
+	install -dm755 "${pkgdir}/usr/lib/systemd/system"
+	install -Dm644 "${srcdir}/vmware-tools-service.service" "${pkgdir}/usr/lib/systemd/system/"
 }
-
-# vim:set ts=2 sw=2 et:

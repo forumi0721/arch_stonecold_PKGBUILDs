@@ -2,33 +2,31 @@
 
 pkgname=("vlmcsd")
 pkgver=20150223
-pkgrel=1
+pkgrel=2
 pkgdesc="KMS emulator."
 arch=("arm" "armv6h" "armv7h" "i686" "x86_64")
 url="http://forums.mydigitallife.info/threads/50234-Emulated-KMS-Servers-on-non-Windows-platforms/"
 license=("GPL")
 install="${pkgname}.install"
 source=(
-  "${pkgname}-${pkgver}.tar.xz"
-  "${pkgname}.service"
+	"${pkgname}-${pkgver}.tar.xz"
+	"${pkgname}.service"
 )
 md5sums=(
-  "511b99bff286f3fc7e91c54395755cd4"
-  "197306c5f3bc511fce5f7b30f747a3f6"
+	"511b99bff286f3fc7e91c54395755cd4"
+	"197306c5f3bc511fce5f7b30f747a3f6"
 )
 
 build() {
-  cd "${srcdir}/${pkgname}"
-  make
+	cd "${srcdir}/${pkgname}"
+	make
 }
 
 package() {
-  install -dm755 "${pkgdir}/usr/bin"
-  install -Dm755 "${srcdir}/${pkgname}/vlmcsd" "${pkgdir}/usr/bin/"
-  install -Dm755 "${srcdir}/${pkgname}/vlmcs" "${pkgdir}/usr/bin/"
+	install -dm755 "${pkgdir}/usr/bin"
+	install -Dm755 "${srcdir}/${pkgname}/vlmcsd" "${pkgdir}/usr/bin/"
+	install -Dm755 "${srcdir}/${pkgname}/vlmcs" "${pkgdir}/usr/bin/"
 
-  install -dm755 "${pkgdir}/usr/lib/systemd/system"
-  install -Dm644 "${srcdir}/vlmcsd.service" "${pkgdir}/usr/lib/systemd/system/"
+	install -dm755 "${pkgdir}/usr/lib/systemd/system"
+	install -Dm644 "${srcdir}/vlmcsd.service" "${pkgdir}/usr/lib/systemd/system/"
 }
-
-# vim:set ts=2 sw=2 et:

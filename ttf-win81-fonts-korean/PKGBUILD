@@ -2,7 +2,7 @@
 
 pkgname=("ttf-win81-fonts-korean")
 pkgver=0.1
-pkgrel=1
+pkgrel=2
 pkgdesc="Windows 8.1 korean fonts"
 arch=("any")
 url="http://www.microsoft.com"
@@ -15,9 +15,7 @@ source=("${pkgname}.tar.xz")
 md5sums=("b56045dda6928d3b063f42762827b3c9")
 
 package() {
-  install -dm755 "${pkgdir}/usr/share/fonts/TTF"
-  install -Dm644 "${srcdir}/"*.ttf "${pkgdir}/usr/share/fonts/TTF/"
-  install -Dm644 "${srcdir}/"*.ttc "${pkgdir}/usr/share/fonts/TTF/"
+	install -dm755 "${pkgdir}/usr/share/fonts/TTF"
+	install -Dm644 "${srcdir}/"*.ttf "${pkgdir}/usr/share/fonts/TTF/"
+	install -Dm644 "${srcdir}/"*.ttc "${pkgdir}/usr/share/fonts/TTF/"
 }
-
-# vim:set ts=2 sw=2 et:

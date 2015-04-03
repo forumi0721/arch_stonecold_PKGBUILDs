@@ -2,7 +2,7 @@
 
 pkgname=("ttf-bitstream-vera-sans-mono")
 pkgver=0.1
-pkgrel=1
+pkgrel=2
 pkgdesc="Bitstream vera sans mono font"
 arch=("any")
 url="http://www-old.gnome.org/fonts/"
@@ -14,8 +14,6 @@ source=("${pkgname}.tar.xz")
 md5sums=("cdbab17512eea843e74bad7298a1aa00")
 
 package() {
-  install -dm755 "${pkgdir}/usr/share/fonts/TTF"
-  install -Dm644 "${srcdir}/"*.ttf "${pkgdir}/usr/share/fonts/TTF/"
+	install -dm755 "${pkgdir}/usr/share/fonts/TTF"
+	install -Dm644 "${srcdir}/"*.ttf "${pkgdir}/usr/share/fonts/TTF/"
 }
-
-# vim:set ts=2 sw=2 et:

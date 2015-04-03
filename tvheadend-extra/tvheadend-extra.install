@@ -1,12 +1,18 @@
-post_install() {
-	echo "To use the mc2xml service, please run the following command:"
-	echo " # systemctl enable mc2xml.timer"
+echo_red() {
+	echo -e "\e[0;31m${1}\e[0m"
 }
 
-post_upgrade() {
-	if [ -e /etc/systemd/system/multi-user.target.wants/mc2xml.timer ]; then
-		systemctl daemon-reload
-	fi
+echo_green() {
+	echo -e "\e[0;32m${1}\e[0m"
+}
+
+echo_blue() {
+	echo -e "\e[0;34m${1}\e[0m"
+}
+
+post_install() {
+	echo_green "To configure a service to be automatically started at boot time, use the systemctl command in the following form:"
+	echo_red   " # systemctl enable mc2xml.timer"
 }
 
 post_remove() {

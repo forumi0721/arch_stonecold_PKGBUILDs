@@ -2,7 +2,7 @@
 
 pkgname=("tvheadend-extra")
 pkgver=0.1
-pkgrel=2
+pkgrel=3
 pkgdesc="tvheadend extra EPG and frequencies"
 arch=("any")
 url="https://tvheadend.org/"
@@ -13,22 +13,20 @@ source=("${pkgname}.tar.xz")
 md5sums=("7dd8e7dccca4afb834c0a0716762f627")
 
 package() {
-  install -dm755 "${pkgdir}/usr/share/tvheadend/data/dvb-scan/atsc"
-  install -Dm644 "${srcdir}/${pkgname}/usr/share/tvheadend/data/dvb-scan/atsc/"* "${pkgdir}/usr/share/tvheadend/data/dvb-scan/atsc/"
+	install -dm755 "${pkgdir}/usr/share/tvheadend/data/dvb-scan/atsc"
+	install -Dm644 "${srcdir}/${pkgname}/usr/share/tvheadend/data/dvb-scan/atsc/"* "${pkgdir}/usr/share/tvheadend/data/dvb-scan/atsc/"
 
-  install -dm755 "${pkgdir}/usr/lib/systemd/system"
-  install -Dm644 "${srcdir}/${pkgname}/usr/lib/systemd/system/mc2xml.service" "${pkgdir}/usr/lib/systemd/system/"
-  install -Dm644 "${srcdir}/${pkgname}/usr/lib/systemd/system/mc2xml.timer" "${pkgdir}/usr/lib/systemd/system"
+	install -dm755 "${pkgdir}/usr/lib/systemd/system"
+	install -Dm644 "${srcdir}/${pkgname}/usr/lib/systemd/system/mc2xml.service" "${pkgdir}/usr/lib/systemd/system/"
+	install -Dm644 "${srcdir}/${pkgname}/usr/lib/systemd/system/mc2xml.timer" "${pkgdir}/usr/lib/systemd/system"
 
-  install -dm755 "${pkgdir}/usr/bin"
-  install -Dm755 "${srcdir}/${pkgname}/usr/bin/tv_grab_mc2xml" "${pkgdir}/usr/bin/"
+	install -dm755 "${pkgdir}/usr/bin"
+	install -Dm755 "${srcdir}/${pkgname}/usr/bin/tv_grab_mc2xml" "${pkgdir}/usr/bin/"
 
-  install -dm755 "${pkgdir}/var/mc2xml"
-  install -Dm755 "${srcdir}/${pkgname}/var/mc2xml/mc2xml.sh" "${pkgdir}/var/mc2xml/"
-  install -Dm644 "${srcdir}/${pkgname}/var/mc2xml/"*.dat "${pkgdir}/var/mc2xml/"
-  install -Dm644 "${srcdir}/${pkgname}/var/mc2xml/"*.chl "${pkgdir}/var/mc2xml/"
-  install -Dm644 "${srcdir}/${pkgname}/var/mc2xml/"*.ren "${pkgdir}/var/mc2xml/"
-  install -Dm644 "${srcdir}/${pkgname}/var/mc2xml/"*.xml.gz "${pkgdir}/var/mc2xml/"
+	install -dm755 "${pkgdir}/var/mc2xml"
+	install -Dm755 "${srcdir}/${pkgname}/var/mc2xml/mc2xml.sh" "${pkgdir}/var/mc2xml/"
+	install -Dm644 "${srcdir}/${pkgname}/var/mc2xml/"*.dat "${pkgdir}/var/mc2xml/"
+	install -Dm644 "${srcdir}/${pkgname}/var/mc2xml/"*.chl "${pkgdir}/var/mc2xml/"
+	install -Dm644 "${srcdir}/${pkgname}/var/mc2xml/"*.ren "${pkgdir}/var/mc2xml/"
+	install -Dm644 "${srcdir}/${pkgname}/var/mc2xml/"*.xml.gz "${pkgdir}/var/mc2xml/"
 }
-
-# vim:set ts=2 sw=2 et:
