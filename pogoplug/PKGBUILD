@@ -1,8 +1,8 @@
 # Maintainer: StoneCold <forumi0721[at]gmail[dot]com>
 
 pkgname=("pogoplug")
-pkgver=3.4.5.1
-pkgrel=2
+pkgver=3.4.5.10
+pkgrel=1
 pkgdesc="my.pogoplug.com service daemon"
 arch=("arm" "armv6h" "armv7h")
 url="http://my.pogoplug.com"
