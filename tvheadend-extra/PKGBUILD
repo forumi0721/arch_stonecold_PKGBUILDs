@@ -2,7 +2,7 @@
 
 pkgname=("tvheadend-extra")
 pkgver=0.1
-pkgrel=3
+pkgrel=4
 pkgdesc="tvheadend extra EPG and frequencies"
 arch=("any")
 url="https://tvheadend.org/"
@@ -10,7 +10,7 @@ license=("custom")
 depends=("tvheadend" "mc2xml-bin")
 install="${pkgname}.install"
 source=("${pkgname}.tar.xz")
-md5sums=("7dd8e7dccca4afb834c0a0716762f627")
+md5sums=("f462886a260af812abdf683bf55d0c58")
 
 package() {
 	install -dm755 "${pkgdir}/usr/share/tvheadend/data/dvb-scan/atsc"
