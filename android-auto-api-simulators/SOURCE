@@ -1,6 +1,7 @@
 #!/bin/sh
 
-ONWER="Y"
+LOCALPKGBUILD="Y"
+OWNER="Y"
 SOURCETYPE="AUR"
 SOURCEPATH="https://aur.archlinux.org/packages/an/android-auto-api-simulators/android-auto-api-simulators.tar.gz"
 

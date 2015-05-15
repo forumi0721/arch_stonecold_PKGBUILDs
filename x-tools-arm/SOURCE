@@ -1,5 +1,6 @@
 #!/bin/sh
 
+LOCALPKGBUILD="Y"
 OWNER="Y"
 SOURCETYPE="AUR"
 SOURCEPATH="https://aur.archlinux.org/packages/di/distccd-alarm-armv5/distccd-alarm-armv5.tar.gz"

@@ -1,6 +1,5 @@
 # Maintainer: StoneCold <forumi0721[at]gmail[dot]com>
 
-_localpkgver=Y
 _pkgbase="x-tools"
 pkgname=("${_pkgbase}-armv5" "${_pkgbase}-armv6h" "${_pkgbase}-armv7h")
 pkgver=4.9.2
