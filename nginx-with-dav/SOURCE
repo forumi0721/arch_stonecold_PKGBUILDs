@@ -1,7 +1,7 @@
 #!/bin/sh
 
-SOURCETYPE="ABS"
-SOURCEPATH="/var/abs/extra/nginx/"
+SOURCETYPE="RSYNC"
+SOURCEPATH="rsync.archlinux.org::abs/x86_64/extra/nginx"
 
 function GetSourcePatch {
 	sed -i "s/^arch=('i686' 'x86_64')$/arch=('i686' 'x86_64' 'arm' 'armv6h' 'armv7h')/g" PKGBUILD
