@@ -1,0 +1,45 @@
+# Maintainer: Damian Nowak <damian.nowak@atlashost.eu>
+# Maintainer: StoneCold <forumi0721[at]gmail[dot]com>
+
+pkgname=("webvirtmgr")
+pkgver=4.8.8
+pkgrel=1
+pkgdesc="Web front-end for KVM virtual machines"
+arch=("i686" "x86_64")
+url="https://www.webvirtmgr.net/"
+license=("Apache")
+depends=("libvirt" "libvirt-python" "qemu" "dnsmasq" "bridge-utils" "ebtables" "dmidecode" "python2" "supervisor" "websockify")
+optdepends=("nginx: Web server to run reverse proxy")
+makedepends=("git" "python2-pip")
+options=("!strip" "!emptydirs")
+install="${pkgname}.install"
+source=(
+	"https://github.com/retspen/webvirtmgr/archive/v4.8.8.tar.gz"
+	"webvirtmgr-init"
+	"webvirtmgr.ini"
+	"webvirtmgr-nginx.conf"
+)
+md5sums=(
+	"SKIP"
+	"SKIP"
+	"SKIP"
+	"SKIP"
+)
+
+package() {
+	install -dm755 "${pkgdir}/usr/lib"
+	cp -ar "${srcdir}/${pkgname}-${pkgver}" "${pkgdir}/usr/lib/${pkgname}"
+	rm -rf "${pkgdir}/usr/lib/${pkgname}/.gitignore"
+  	pip2 install -r "${pkgdir}/usr/lib/${pkgname}/requirements.txt" -t "${pkgdir}/usr/lib/${pkgname}/lib"
+
+	install -dm755 "${pkgdir}/usr/bin"
+	install -Dm755 "${srcdir}/webvirtmgr-init" "${pkgdir}/usr/bin/"
+
+	install -dm755 "${pkgdir}/etc/supervisor.d"
+	install -Dm644 "${srcdir}/webvirtmgr.ini" "${pkgdir}/etc/supervisor.d/"
+
+	install -dm755 "${pkgdir}/etc/nginx/conf.d"
+	install -Dm644 "${srcdir}/webvirtmgr-nginx.conf" "${pkgdir}/etc/nginx/conf.d/"
+
+	install -dm755 "${pkgdir}/var/lib/webvirtmgr"
+}

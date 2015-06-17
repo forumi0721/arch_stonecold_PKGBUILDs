@@ -1,0 +1,20 @@
+post_install() {
+	cat <<- EOF
+    To finalize the installation you need to run:
+    # /usr/bin/webvirtmgr-init
+
+    WebVirtMgr daemon is managed by Supervisord.
+    # systemctl enable supervisord
+    # systemctl start supervisord
+
+	Adding users is currently done on the command line. Use this command to add the user :
+	# saslpasswd2 -a libvirt [username]
+
+    See the wiki for more details:
+    https://github.com/retspen/webvirtmgr/wiki/Install-WebVirtMgr
+
+    You also need to configure libvirt if you haven't yet done it:
+    https://wiki.archlinux.org/index.php/libvirt#Server_configuration
+    https://wiki.archlinux.org/index.php/libvirt#Remote_access_to_libvirt
+EOF
+}
