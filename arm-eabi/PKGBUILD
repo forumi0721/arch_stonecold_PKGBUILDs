@@ -1,0 +1,32 @@
+# Maintainer: StoneCold <forumi0721[at]gmail[dot]com>
+
+pkgname=("arm-eabi-git")
+_gitname="arm-eabi"
+pkgver=20120516.816.a4062cc
+pkgrel=1
+pkgdesc="arm-eabi"
+arch=("i686" "x86_64")
+url="https://android.googlesource.com/platform/prebuilt"
+license=("custom")
+options=("!strip" "staticlibs")
+source=(
+	"${_gitname}::git+https://android.googlesource.com/platform/prebuilt.git"
+	"arm-eabi.sh"
+)
+md5sums=(
+	"SKIP"
+	"SKIP"
+)
+
+pkgver() {
+	cd "${srcdir}/${_gitname}"
+	echo "$(git log -1 --format="%cd" --date=short | sed "s/-//g").$(git rev-list --count HEAD).$(git rev-parse --short HEAD)"
+}
+
+package() {
+	install -dm755 "${pkgdir}/opt"
+	cp -ar "${srcdir}/${_gitname}/linux-x86/toolchain/arm-eabi-4.4.3" "${pkgdir}/opt/arm-eabi-4.4.3"
+
+	install -dm755 "${pkgdir}/etc/profile.d"
+	install -Dm755 "${srcdir}/arm-eabi.sh" "${pkgdir}/etc/profile.d/"
+}
