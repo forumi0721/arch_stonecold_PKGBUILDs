@@ -8,6 +8,7 @@ pkgdesc="arm-eabi"
 arch=("i686" "x86_64")
 url="https://android.googlesource.com/platform/prebuilt"
 license=("custom")
+provides=("arm-eabi")
 options=("!strip" "staticlibs")
 source=(
 	"${_gitname}::git+https://android.googlesource.com/platform/prebuilt.git"
