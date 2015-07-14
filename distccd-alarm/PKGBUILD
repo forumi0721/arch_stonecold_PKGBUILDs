@@ -2,8 +2,8 @@
 
 _pkgbase="distccd-alarm"
 pkgname=("${_pkgbase}-armv5" "${_pkgbase}-armv6h" "${_pkgbase}-armv7h")
-pkgver=4.9.2
-pkgrel=4
+pkgver=5.1.0
+pkgrel=1
 pkgdesc="An x-tools & distcc services package for Arch Linux ARM"
 arch=("x86_64")
 url="http://archlinuxarm.org/developers/distcc-cross-compiling"
@@ -17,9 +17,9 @@ source=(
 	"${_pkgbase}.tar.xz"
 )
 md5sums=(
-	"abe09ecca53b0c7f103c0466f9413579"
-	"6b95b0b1c47c66191501ab6918d70a6c"
-	"ccbfa040c1949dad6d32505fa9d973b9"
+	"fb4c6977190b3a1d9d39d59f2cb69ed4"
+	"74ab3f88c0d09c67f047532f48116e2f"
+	"b8e2c1056705cf27332022a02fd6b976"
 	"df2b2236d24e3db0c174112e06a2446a"
 )
 
