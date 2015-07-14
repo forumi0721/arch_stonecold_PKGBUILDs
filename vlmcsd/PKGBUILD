@@ -1,8 +1,8 @@
 # Maintainer: StoneCold <forumi0721[at]gmail[dot]com>
 
 pkgname=("vlmcsd")
-pkgver=20150223
-pkgrel=2
+pkgver=20150629
+pkgrel=1
 pkgdesc="KMS emulator."
 arch=("arm" "armv6h" "armv7h" "i686" "x86_64")
 url="http://forums.mydigitallife.info/threads/50234-Emulated-KMS-Servers-on-non-Windows-platforms/"
@@ -13,7 +13,7 @@ source=(
 	"${pkgname}.service"
 )
 md5sums=(
-	"511b99bff286f3fc7e91c54395755cd4"
+	"12e6b35c8f28aad0790edde672ebce9e"
 	"197306c5f3bc511fce5f7b30f747a3f6"
 )
 
