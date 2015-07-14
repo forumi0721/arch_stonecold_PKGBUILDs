@@ -1,6 +1,0 @@
-#!/bin/sh
-
-LOCALPKGBUILD="Y"
-OWNER="Y"
-SOURCETYPE="AUR"
-SOURCEPATH="https://aur.archlinux.org/pkgbase/tvheadend-release/"
