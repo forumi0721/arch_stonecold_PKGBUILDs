@@ -12,7 +12,6 @@ conflicts=("qemu-user-static" "qemu-static" "binfmt-qemu-static")
 install="${pkgname}.install"
 source=("qemu-user-static-deb.conf")
 md5sums=("1d8e7dcd511742cc7a09230437eedce9")
-_deb=
 case "${CARCH}" in
 	"i686")
 		_deb="qemu-user-static_2.3+dfsg-6a_i386.deb"
