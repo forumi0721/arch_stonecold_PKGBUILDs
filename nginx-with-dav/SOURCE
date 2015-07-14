@@ -1,5 +1,6 @@
 #!/bin/sh
 
+LOCALPKGVER="N"
 SOURCETYPE="RSYNC"
 SOURCEPATH="rsync.archlinux.org::abs/x86_64/extra/nginx"
 

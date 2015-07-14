@@ -1,7 +1,6 @@
 #!/bin/sh
 
-LOCALPKGBUILD="Y"
-OWNER="Y"
-SOURCETYPE="AUR"
+LOCALPKGVER="Y"
+SOURCETYPE="local"
 SOURCEPATH="https://aur.archlinux.org/packages/mc/mc2xml-bin/mc2xml-bin.tar.gz"
 
