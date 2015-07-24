@@ -1,8 +1,8 @@
 # Maintainer: StoneCold <forumi0721[at]gmail[dot]com>
 
 pkgname=("tvheadend-extra")
-pkgver=0.1
-pkgrel=4
+pkgver=0.2
+pkgrel=1
 pkgdesc="tvheadend extra EPG and frequencies"
 arch=("any")
 url="https://tvheadend.org/"
@@ -10,7 +10,7 @@ license=("custom")
 depends=("tvheadend" "mc2xml-bin")
 install="${pkgname}.install"
 source=("${pkgname}.tar.xz")
-md5sums=("f462886a260af812abdf683bf55d0c58")
+md5sums=("8565e98300bb669bbd5e7cbf302a95c0")
 
 package() {
 	install -dm755 "${pkgdir}/usr/share/tvheadend/data/dvb-scan/atsc"
@@ -23,10 +23,10 @@ package() {
 	install -dm755 "${pkgdir}/usr/bin"
 	install -Dm755 "${srcdir}/${pkgname}/usr/bin/tv_grab_mc2xml" "${pkgdir}/usr/bin/"
 
-	install -dm755 "${pkgdir}/var/mc2xml"
-	install -Dm755 "${srcdir}/${pkgname}/var/mc2xml/mc2xml.sh" "${pkgdir}/var/mc2xml/"
-	install -Dm644 "${srcdir}/${pkgname}/var/mc2xml/"*.dat "${pkgdir}/var/mc2xml/"
-	install -Dm644 "${srcdir}/${pkgname}/var/mc2xml/"*.chl "${pkgdir}/var/mc2xml/"
-	install -Dm644 "${srcdir}/${pkgname}/var/mc2xml/"*.ren "${pkgdir}/var/mc2xml/"
-	install -Dm644 "${srcdir}/${pkgname}/var/mc2xml/"*.xml.gz "${pkgdir}/var/mc2xml/"
+	install -dm755 "${pkgdir}/var/lib/mc2xml"
+	install -Dm755 "${srcdir}/${pkgname}/var/lib/mc2xml/mc2xml.sh" "${pkgdir}/var/lib/mc2xml/"
+	install -Dm644 "${srcdir}/${pkgname}/var/lib/mc2xml/mc2xml.dat" "${pkgdir}/var/lib/mc2xml/"
+	install -Dm644 "${srcdir}/${pkgname}/var/lib/mc2xml/mc2xml.chl" "${pkgdir}/var/lib/mc2xml/"
+	install -Dm644 "${srcdir}/${pkgname}/var/lib/mc2xml/mc2xml.ren" "${pkgdir}/var/lib/mc2xml/"
+	install -Dm644 "${srcdir}/${pkgname}/var/lib/mc2xml/xmltv.xml.gz" "${pkgdir}/var/lib/mc2xml/"
 }
