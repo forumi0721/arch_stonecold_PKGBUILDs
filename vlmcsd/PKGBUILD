@@ -1,21 +1,29 @@
 # Maintainer: StoneCold <forumi0721[at]gmail[dot]com>
 
 pkgname=("vlmcsd")
-pkgver=20150629
+pkgver=20150718
 pkgrel=1
 pkgdesc="KMS emulator."
 arch=("arm" "armv6h" "armv7h" "i686" "x86_64")
 url="http://forums.mydigitallife.info/threads/50234-Emulated-KMS-Servers-on-non-Windows-platforms/"
 license=("GPL")
+makedepends=("p7zip")
 install="${pkgname}.install"
 source=(
-	"${pkgname}-${pkgver}.tar.xz"
+	"${pkgname}.src.7z::http://rghost.net/download/8cJHNJQxg/a6230648881b5cef4982772aa5bc84bc478c1602/vlmcsd-svn796-2015-07-18-Hotbird64-source-only.7z"
 	"${pkgname}.service"
 )
 md5sums=(
-	"12e6b35c8f28aad0790edde672ebce9e"
+	"7e6d6146ffd187eeb2e7a3147dd56796"
 	"197306c5f3bc511fce5f7b30f747a3f6"
 )
+noextract=(
+	"${pkgname}.src.7z"
+)
+
+prepare() {
+	7z x -p2015 "${srcdir}/${pkgname}.src.7z" -y -o"${srcdir}/${pkgname}" &> /dev/null
+}
 
 build() {
 	cd "${srcdir}/${pkgname}"
@@ -26,6 +34,13 @@ package() {
 	install -dm755 "${pkgdir}/usr/bin"
 	install -Dm755 "${srcdir}/${pkgname}/vlmcsd" "${pkgdir}/usr/bin/"
 	install -Dm755 "${srcdir}/${pkgname}/vlmcs" "${pkgdir}/usr/bin/"
+
+	install -dm755 "${pkgdir}/usr/share/man/man1/"
+	install -Dm644 "${srcdir}/${pkgname}/vlmcs.1" "${pkgdir}/usr/share/man/man1/"
+	install -dm755 "${pkgdir}/usr/share/man/man7/"
+	install -Dm644 "${srcdir}/${pkgname}/vlmcsd.7" "${pkgdir}/usr/share/man/man7/"
+	install -dm755 "${pkgdir}/usr/share/man/man8/"
+	install -Dm644 "${srcdir}/${pkgname}/vlmcsd.8" "${pkgdir}/usr/share/man/man8/"
 
 	install -dm755 "${pkgdir}/usr/lib/systemd/system"
 	install -Dm644 "${srcdir}/vlmcsd.service" "${pkgdir}/usr/lib/systemd/system/"
