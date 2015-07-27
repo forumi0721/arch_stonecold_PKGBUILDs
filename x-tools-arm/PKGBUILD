@@ -1,6 +1,7 @@
 # Maintainer: StoneCold <forumi0721[at]gmail[dot]com>
 
 _pkgbase="x-tools"
+pkgbase="${_pkgbase}-arm"
 pkgname=("${_pkgbase}-armv5" "${_pkgbase}-armv6h" "${_pkgbase}-armv7h")
 pkgver=5.1.0
 pkgrel=1

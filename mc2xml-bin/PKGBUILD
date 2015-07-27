@@ -11,7 +11,7 @@ provides=("mc2xml")
 conflicts=("mc2xml")
 replaces=("mc2xml")
 options=("!strip" "staticlibs")
-source=("mc2xml")
+source=("file://mc2xml")
 md5sums=("3b612d906f295ea822abadeaf43727b0")
 if [ "${CARCH}" = "arm" ] || [ "${CARCH}" = "armv6h" ] || [ "${CARCH}" = "armv7h" ]; then
 	depends+=("qemu-user-static-deb")
