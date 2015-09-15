@@ -2,13 +2,12 @@
 
 pkgname=("epg2xml-git")
 _gitname="epg2xml"
-pkgver=20150915.8.8c15e7b
+pkgver=20150915.13.bc77151
 pkgrel=1
 pkgdesc="epg2xml"
 arch=("any")
 url="http://www.epg.co.kr/"
 license=("custom")
-depends=("tvheadend")
 install="${pkgname}.install"
 source=("${_gitname}::git+https://github.com/forumi0721/epg2xml.git")
 md5sums=("SKIP")
