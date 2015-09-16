@@ -2,12 +2,13 @@
 
 pkgname=("epg2xml-git")
 _gitname="epg2xml"
-pkgver=20150916.18.ad108f4
+pkgver=20150916.19.82529f3
 pkgrel=1
 pkgdesc="epg2xml"
 arch=("any")
 url="http://www.epg.co.kr/"
 license=("custom")
+depends=("wget")
 install="${pkgname}.install"
 source=("${_gitname}::git+https://github.com/forumi0721/epg2xml.git")
 md5sums=("SKIP")
