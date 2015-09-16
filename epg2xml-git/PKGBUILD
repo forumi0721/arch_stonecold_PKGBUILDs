@@ -2,7 +2,7 @@
 
 pkgname=("epg2xml-git")
 _gitname="epg2xml"
-pkgver=20150916.16.d8bd823
+pkgver=20150916.17.2185e4e
 pkgrel=1
 pkgdesc="epg2xml"
 arch=("any")
