@@ -7,13 +7,12 @@ SOURCEPATH="rsync.archlinux.org::abs/x86_64/extra/nginx"
 function GetSourcePatch {
 	sed -i "s/^arch=('i686' 'x86_64')$/arch=('i686' 'x86_64' 'arm' 'armv6h' 'armv7h')/g" PKGBUILD
 	sed -i "s/^pkgdesc=.*$/pkgdesc='Lightweight HTTP server and IMAP\/POP3 proxy server with WebDAV missing methods support'/g" PKGBUILD
-	sed -i "s/^makedepends=('hardening-wrapper')$/#makedepends=('hardening-wrapper')/g" PKGBUILD
 	sed -i "s/^pkgname=nginx$/_pkgname=nginx\n\
 pkgname=nginx-with-dav/g" PKGBUILD
 	sed -i "s/\$pkgname/\$_pkgname/g" PKGBUILD
 
 	if [ -z "$(grep "provides=('nginx')" PKGBUILD)" ]; then
-		sed -i "s/\(makedepends=(.*\)/\1\n\
+		sed -i "s/\(depends=(.*\)/\1\n\
 conflicts=('nginx' 'nginx-unstable' 'nginx-svn' 'nginx-devel' 'nginx-custom-dev' 'nginx-full')\n\
 provides=('nginx')/g" PKGBUILD
 	fi
@@ -22,8 +21,7 @@ provides=('nginx')/g" PKGBUILD
         nginx-dav-ext-module-0.0.3.tar.gz::https://github.com/arut/nginx-dav-ext-module/archive/v0.0.3.tar.gz)%g}" PKGBUILD
 		sed -i "/^md5sums=(/,/)$/{s%\(.*\))$%\1\n\
          'SKIP')%g}" PKGBUILD
-		sed -i "/^\s\+\.\/configure /,/\w$/{s%\(.*\w\)$%\1 \\\\\n\
-    --add-module=\"\${srcdir}\/nginx-dav-ext-module-0.0.3\"%g}" PKGBUILD
+		sed -i "/--with-http_sub_module.*/,/^$/{s/\(--with-http_sub_module\).*/\1 \\\\\n    --add-module=\"\${srcdir}\/nginx-dav-ext-module-0.0.3\"/g}" PKGBUILD
 	fi
 }
 
