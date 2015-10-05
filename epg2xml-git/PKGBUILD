@@ -2,13 +2,14 @@
 
 pkgname=("epg2xml-git")
 _gitname="epg2xml"
-pkgver=20151002.25.03754c6
+pkgver=20151002.26.838b84f
 pkgrel=1
 pkgdesc="epg2xml"
 arch=("any")
 url="http://www.epg.co.kr/"
 license=("custom")
 depends=("wget")
+backup=("var/lib/epg2xml/tvchannel.conf")
 install="${pkgname}.install"
 source=("${_gitname}::git+https://github.com/forumi0721/epg2xml.git")
 md5sums=("SKIP")
