@@ -1,4 +1,9 @@
 post_install() {
+  login='webvirtmgr'
+
+  getent group "${login}" > /dev/null || groupadd -r "${login}" > /dev/null
+  getent passwd "${login}" > /dev/null || useradd -r -g "${login}" -d "/var/lib/${login}" "${login}" -m > /dev/null
+
 	cat <<- EOF
     To finalize the installation you need to run:
     # /usr/bin/webvirtmgr-init
@@ -6,6 +11,10 @@ post_install() {
     WebVirtMgr daemon is managed by Supervisord.
     # systemctl enable supervisord
     # systemctl start supervisord
+
+    To access VNC console you need to enable the NoVNC proxy.
+    # systemctl enable webvirtmgr-novnc
+    # systemctl start webvirtmgr-novnc
 
 	Adding users is currently done on the command line. Use this command to add the user :
 	# saslpasswd2 -a libvirt [username]

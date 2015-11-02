@@ -2,7 +2,7 @@
 # Maintainer: StoneCold <forumi0721[at]gmail[dot]com>
 
 pkgname=("webvirtmgr")
-pkgver=4.8.8
+pkgver=4.8.9
 pkgrel=1
 pkgdesc="Web front-end for KVM virtual machines"
 arch=("i686" "x86_64")
@@ -14,7 +14,7 @@ makedepends=("git" "python2-pip")
 options=("!strip" "!emptydirs")
 install="${pkgname}.install"
 source=(
-	"https://github.com/retspen/webvirtmgr/archive/v4.8.8.tar.gz"
+	"https://github.com/retspen/webvirtmgr/releases/download/v${pkgver}/webvirtmgr.tar.gz"
 	"webvirtmgr-init"
 	"webvirtmgr.ini"
 	"webvirtmgr-nginx.conf"
@@ -28,7 +28,7 @@ md5sums=(
 
 package() {
 	install -dm755 "${pkgdir}/usr/lib"
-	cp -ar "${srcdir}/${pkgname}-${pkgver}" "${pkgdir}/usr/lib/${pkgname}"
+	cp -ar "${srcdir}/${pkgname}" "${pkgdir}/usr/lib/${pkgname}"
 	rm -rf "${pkgdir}/usr/lib/${pkgname}/.gitignore"
   	pip2 install -r "${pkgdir}/usr/lib/${pkgname}/requirements.txt" -t "${pkgdir}/usr/lib/${pkgname}/lib"
 
