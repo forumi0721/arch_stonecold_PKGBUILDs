@@ -1,0 +1,48 @@
+# Maintainer: StoneCold <forumi0721[at]gmail[dot]com>
+
+pkgname=("peazip-gtk2-portable")
+pkgver=5.8.1
+pkgrel=1
+pkgdesc="NATIVE 64-BIT GTK2 archiver utility, portable version with few dependencies"
+arch=("x86_64" "i686")
+url="http://www.peazip.org/peazip-linux.html"
+license=(LGPL3)
+depends=(gtk2)
+provides=("peazip")
+conflicts=("peazip" "peazip-gtk2" "peazip-qt")
+install="${pkgname}.install"
+options=("!strip" "staticlibs")
+source=("peazip.png")
+md5sums=("SKIP")
+if [ "${CARCH}" = "x86_64" ]; then
+	source+=("https://github.com/giorgiotani/PeaZip/releases/download/$pkgver/peazip_portable-$pkgver.LINUX.x86_64.GTK2.tar.gz")
+	md5sums+=("SKIP")
+else
+	source+=("https://github.com/giorgiotani/PeaZip/releases/download/$pkgver/peazip_portable-$pkgver.LINUX.GTK2.tar.gz")
+	md5sums+=("SKIP")
+fi
+
+package() {
+	local workingdir=
+	if [ "${CARCH}" = "x86_64" ]; then
+		workingdir=${srcdir}/peazip_portable-${pkgver}.LINUX.x86_64.GTK2
+	else
+		workingdir=${srcdir}/peazip_portable-${pkgver}.LINUX.GTK2
+	fi
+
+	install -dm755 "${pkgdir}/opt/peazip"
+	install -Dm755 "${workingdir}/peazip" "${pkgdir}/opt/peazip/"
+	install -Dm644 "${workingdir}/copying.txt" "${pkgdir}/opt/peazip/"
+	install -Dm644 "${workingdir}/peazip_help.pdf" "${pkgdir}/opt/peazip/"
+	cp -ar "${workingdir}/res" "${pkgdir}/opt/peazip/"
+
+	sed -i 's/^same$/~\/.peazip/g' "${pkgdir}/opt/peazip/res/altconf.txt"
+
+	install -dm755 "${pkgdir}/usr/share/applications"
+	install -Dm644 "${workingdir}/FreeDesktop_integration/peazip-alt(multilingual).desktop" "${pkgdir}/usr/share/applications/peazip.desktop"
+	install -dm755 "${pkgdir}/usr/share/pixmaps"
+	install -Dm644 "${srcdir}/peazip.png" "${pkgdir}/usr/share/pixmaps/"
+
+	install -dm755 "${pkgdir}/usr/bin"
+	ln -s "/opt/peazip/peazip" "${pkgdir}/usr/bin/peazip"
+}
