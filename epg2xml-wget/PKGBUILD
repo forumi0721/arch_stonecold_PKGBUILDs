@@ -1,0 +1,38 @@
+# Maintainer: StoneCold <forumi0721[at]gmail[dot]com>
+
+pkgname=("epg2xml-wget")
+pkgver=0.1
+pkgrel=1
+pkgdesc="epg2xml-wget"
+arch=("any")
+url="http://www.epg.co.kr/"
+license=("custom")
+depends=("wget")
+provides=("epg2xml-git")
+conflicts=("epg2xml-git")
+install="${pkgname}.install"
+source=(
+	"epg2xml-wget.service"
+	"epg2xml-wget.timer"
+	"tv_grab_epg2xml"
+	"epg2xml-wget"
+)
+md5sums=(
+	"SKIP"
+	"SKIP"
+	"SKIP"
+	"SKIP"
+)
+
+package() {
+	install -dm755 "${pkgdir}/usr/lib/systemd/system"
+	install -Dm644 "${srcdir}/${_gitname}/epg2xml-wget.service" "${pkgdir}/usr/lib/systemd/system/"
+	install -Dm644 "${srcdir}/${_gitname}/epg2xml-wget.timer" "${pkgdir}/usr/lib/systemd/system/"
+
+	install -dm755 "${pkgdir}/usr/bin"
+	install -Dm755 "${srcdir}/${_gitname}/tv_grab_epg2xml" "${pkgdir}/usr/bin/"
+
+	install -dm755 "${pkgdir}/var/lib/epg2xml"
+	install -Dm755 "${srcdir}/${_gitname}/epg2xml-wget" "${pkgdir}/var/lib/epg2xml/"
+}
+

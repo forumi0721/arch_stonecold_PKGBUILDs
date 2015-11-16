@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+wget http://forumi0721.ipdisk.co.kr:8000/epg2xml/xmltv.xml.gz -O /var/lib/epg2xml/xmltv.xml.gz
+
+exit
+
