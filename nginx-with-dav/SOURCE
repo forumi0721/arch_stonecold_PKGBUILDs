@@ -21,7 +21,7 @@ provides=('nginx')/g" PKGBUILD
         nginx-dav-ext-module-0.0.3.tar.gz::https://github.com/arut/nginx-dav-ext-module/archive/v0.0.3.tar.gz)%g}" PKGBUILD
 		sed -i "/^md5sums=(/,/)$/{s%\(.*\))$%\1\n\
          'SKIP')%g}" PKGBUILD
-		sed -i "/--with-http_sub_module.*/,/^$/{s/\(--with-http_sub_module\).*/\1 \\\\\n    --add-module=\"\${srcdir}\/nginx-dav-ext-module-0.0.3\"/g}" PKGBUILD
+		sed -i "/\${_stable_flags\[@\]}.*/,/^$/{s/\(\${_stable_flags\[@\]}\).*/\1 \\\\\n    --add-module=\"\${srcdir}\/nginx-dav-ext-module-0.0.3\"/g}" PKGBUILD
 	fi
 }
 

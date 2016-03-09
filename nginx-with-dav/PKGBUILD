@@ -1,4 +1,4 @@
-# $Id: PKGBUILD 258599 2016-01-26 17:25:04Z bpiotrowski $
+# $Id: PKGBUILD 261065 2016-03-06 10:48:31Z pierre $
 # Maintainer: Bartłomiej Piotrowski <bpiotrowski@archlinux.org>
 # Maintainer: Sébastien Luttringer
 # Contributor: Sergej Pupykin <pupykin.s+arch@gmail.com>
@@ -8,7 +8,7 @@
 _pkgname=nginx
 pkgname=nginx-with-dav
 pkgver=1.8.1
-pkgrel=1
+pkgrel=3
 pkgdesc='Lightweight HTTP server and IMAP/POP3 proxy server with WebDAV missing methods support'
 arch=('i686' 'x86_64' 'arm' 'armv6h' 'armv7h')
 url='http://nginx.org'
@@ -36,6 +36,32 @@ md5sums=('2e91695074dbdfbf1bcec0ada9fda462'
          '19a26a61c8afe78defb8b4544f79a9a0'
          'SKIP')
 
+_common_flags=(
+  --with-imap 
+  --with-imap_ssl_module 
+  --with-ipv6 
+  --with-pcre-jit 
+  --with-file-aio 
+  --with-http_addition_module 
+  --with-http_auth_request_module 
+  --with-http_dav_module 
+  --with-http_degradation_module 
+  --with-http_flv_module 
+  --with-http_geoip_module 
+  --with-http_gunzip_module 
+  --with-http_gzip_static_module 
+  --with-http_mp4_module 
+  --with-http_realip_module 
+  --with-http_secure_link_module 
+  --with-http_ssl_module 
+  --with-http_stub_status_module 
+  --with-http_sub_module 
+)
+
+_stable_flags=(
+  --with-http_spdy_module
+)
+
 build() {
   cd $_pkgname-$pkgver
 
@@ -54,26 +80,8 @@ build() {
     --http-fastcgi-temp-path=/var/lib/nginx/fastcgi \
     --http-scgi-temp-path=/var/lib/nginx/scgi \
     --http-uwsgi-temp-path=/var/lib/nginx/uwsgi \
-    --with-imap \
-    --with-imap_ssl_module \
-    --with-ipv6 \
-    --with-pcre-jit \
-    --with-file-aio \
-    --with-http_addition_module \
-    --with-http_auth_request_module \
-    --with-http_dav_module \
-    --with-http_degradation_module \
-    --with-http_flv_module \
-    --with-http_geoip_module \
-    --with-http_gunzip_module \
-    --with-http_gzip_static_module \
-    --with-http_mp4_module \
-    --with-http_realip_module \
-    --with-http_secure_link_module \
-    --with-http_spdy_module \
-    --with-http_ssl_module \
-    --with-http_stub_status_module \
-    --with-http_sub_module \
+    ${_common_flags[@]} \
+    ${_stable_flags[@]} \
     --add-module="${srcdir}/nginx-dav-ext-module-0.0.3"
 
   make
@@ -82,13 +90,6 @@ build() {
 package() {
   cd $_pkgname-$pkgver
   make DESTDIR="$pkgdir" install
-
-  install -Dm644 contrib/vim/ftdetect/nginx.vim \
-    "$pkgdir"/usr/share/vim/vimfiles/ftdetect/nginx.vim
-  install -Dm644 contrib/vim/syntax/nginx.vim \
-    "$pkgdir"/usr/share/vim/vimfiles/syntax/nginx.vim
-  install -Dm644 contrib/vim/indent/nginx.vim \
-    "$pkgdir"/usr/share/vim/vimfiles/indent/nginx.vim
 
   sed -e 's|\<user\s\+\w\+;|user html;|g' \
     -e '44s|html|/usr/share/nginx/html|' \
@@ -114,4 +115,9 @@ package() {
 
   install -d "$pkgdir"/usr/share/man/man8/
   gzip -9c man/nginx.8 > "$pkgdir"/usr/share/man/man8/nginx.8.gz
+
+  for i in ftdetect indent syntax; do
+    install -Dm644 contrib/vim/${i}/nginx.vim \
+      "${pkgdir}/usr/share/vim/vimfiles/${i}/nginx.vim"
+  done
 }
