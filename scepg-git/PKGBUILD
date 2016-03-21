@@ -1,0 +1,38 @@
+# Maintainer: StoneCold <forumi0721[at]gmail[dot]com>
+
+pkgname=("scepg-git")
+_gitname="scepg"
+pkgver=20160321.33.33199be
+pkgrel=1
+pkgdesc="scepg"
+arch=("any")
+url="http://www.epg.co.kr/"
+license=("custom")
+depends=("wget")
+backup=("var/lib/scepg/tvchannel.conf")
+conflicts=("scepg-wget" "epg2xml-git" "epg2xml-wget")
+provides=("scepg-wget" "epg2xml-git" "epg2xml-wget")
+install="${pkgname}.install"
+source=("${_gitname}::git+https://github.com/forumi0721/scepg.git")
+md5sums=("SKIP")
+
+pkgver() {
+	cd "${srcdir}/${_gitname}"
+	echo "$(git log -1 --format="%cd" --date=short | sed "s/-//g").$(git rev-list --count HEAD).$(git rev-parse --short HEAD)"
+}
+
+package() {
+	install -dm755 "${pkgdir}/usr/lib/systemd/system"
+	install -Dm644 "${srcdir}/${_gitname}/scepg.service" "${pkgdir}/usr/lib/systemd/system/"
+	install -Dm644 "${srcdir}/${_gitname}/scepg.timer" "${pkgdir}/usr/lib/systemd/system/"
+
+	install -dm755 "${pkgdir}/usr/bin"
+	install -Dm755 "${srcdir}/${_gitname}/tv_grab_scepg" "${pkgdir}/usr/bin/"
+
+	install -dm755 "${pkgdir}/var/lib/scepg"
+	install -Dm755 "${srcdir}/${_gitname}/scepg" "${pkgdir}/var/lib/scepg/"
+	install -Dm644 "${srcdir}/${_gitname}/tvchannel.conf" "${pkgdir}/var/lib/scepg/"
+	install -Dm644 "${srcdir}/${_gitname}/tvchannel.list" "${pkgdir}/var/lib/scepg/"
+	install -Dm644 "${srcdir}/${_gitname}/tvchannel.u+.conf" "${pkgdir}/var/lib/scepg/"
+}
+

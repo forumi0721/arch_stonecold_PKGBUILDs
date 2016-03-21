@@ -1,7 +1,0 @@
-[Unit]
-Description=epg2xml-wget
-
-[Service]
-Type=oneshot
-WorkingDirectory=/var/lib/epg2xml
-ExecStart=/var/lib/epg2xml/epg2xml-wget

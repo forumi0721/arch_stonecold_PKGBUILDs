@@ -32,9 +32,9 @@ echo_cyan() {
 
 post_install() {
 	echo_green "To configure a service to be automatically started at boot time, use the systemctl command in the following form:"
-	echo_red   " # systemctl enable epg2xml.timer"
+	echo_red   " # systemctl enable scepg.timer"
 }
 
 post_remove() {
-	rm -rf /etc/systemd/system/multi-user.target.wants/epg2xml.timer
+	rm -rf /etc/systemd/system/multi-user.target.wants/scepg.timer
 }

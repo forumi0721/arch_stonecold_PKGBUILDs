@@ -1,0 +1,7 @@
+[Unit]
+Description=scepg-wget
+
+[Service]
+Type=oneshot
+WorkingDirectory=/var/lib/scepg
+ExecStart=/var/lib/scepg/scepg-wget
