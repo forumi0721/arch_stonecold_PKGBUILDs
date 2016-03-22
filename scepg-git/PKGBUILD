@@ -2,19 +2,27 @@
 
 pkgname=("scepg-git")
 _gitname="scepg"
-pkgver=20160321.33.33199be
+pkgver=20160322.37.675c6bf
 pkgrel=1
 pkgdesc="scepg"
 arch=("any")
 url="http://www.epg.co.kr/"
 license=("custom")
-depends=("wget")
-backup=("var/lib/scepg/tvchannel.conf")
+depends=("python-beautifulsoup4" "python-lxml")
+backup=(var/lib/scepg/tvchannel.conf)
 conflicts=("scepg-wget" "epg2xml-git" "epg2xml-wget")
 provides=("scepg-wget" "epg2xml-git" "epg2xml-wget")
 install="${pkgname}.install"
-source=("${_gitname}::git+https://github.com/forumi0721/scepg.git")
-md5sums=("SKIP")
+source=(
+	"${_gitname}::git+https://github.com/forumi0721/scepg.git"
+	scepg.service
+	scepg.timer
+)
+md5sums=(
+	"SKIP"
+	"SKIP"
+	"SKIP"
+)
 
 pkgver() {
 	cd "${srcdir}/${_gitname}"
@@ -23,8 +31,8 @@ pkgver() {
 
 package() {
 	install -dm755 "${pkgdir}/usr/lib/systemd/system"
-	install -Dm644 "${srcdir}/${_gitname}/scepg.service" "${pkgdir}/usr/lib/systemd/system/"
-	install -Dm644 "${srcdir}/${_gitname}/scepg.timer" "${pkgdir}/usr/lib/systemd/system/"
+	install -Dm644 "${srcdir}/scepg.service" "${pkgdir}/usr/lib/systemd/system/"
+	install -Dm644 "${srcdir}/scepg.timer" "${pkgdir}/usr/lib/systemd/system/"
 
 	install -dm755 "${pkgdir}/usr/bin"
 	install -Dm755 "${srcdir}/${_gitname}/tv_grab_scepg" "${pkgdir}/usr/bin/"
