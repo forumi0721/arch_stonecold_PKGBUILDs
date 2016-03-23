@@ -2,7 +2,7 @@
 
 pkgname=("scepg-git")
 _gitname="scepg"
-pkgver=20160322.37.675c6bf
+pkgver=20160323.41.e5aa87f
 pkgrel=1
 pkgdesc="scepg"
 arch=("any")
