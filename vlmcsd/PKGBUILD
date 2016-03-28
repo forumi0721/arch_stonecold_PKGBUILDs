@@ -1,7 +1,7 @@
 # Maintainer: StoneCold <forumi0721[at]gmail[dot]com>
 
 pkgname=("vlmcsd")
-pkgver=20150830
+pkgver=20160307
 pkgrel=1
 pkgdesc="KMS emulator."
 arch=("arm" "armv6h" "armv7h" "i686" "x86_64")
@@ -10,11 +10,11 @@ license=("GPL")
 makedepends=("p7zip")
 install="${pkgname}.install"
 source=(
-	"${pkgname}.src.7z::http://rghost.net/download/8y56k6Nml/8062676e5809eed2c4ab48f41fbf669c27b4b132/vlmcsd-svn812-2015-08-30-Hotbird64-source-only.7z"
+	"${pkgname}.src.7z::http://rghost.net/download/6wLMBYdrT/76375023d160ac035affba2e4e57225594bf3a27/76375023d160ac035affba2e4e57225594bf3a27/vlmcsd-svn818-2016-03-07-Hotbird64-source-only.7z"
 	"${pkgname}.service"
 )
 md5sums=(
-	"70d2da2f37014dbe9febaaa9f1064b2f"
+	"0add1fd42c28cd91ef28fbc8b83abe49"
 	"197306c5f3bc511fce5f7b30f747a3f6"
 )
 noextract=(
@@ -22,7 +22,7 @@ noextract=(
 )
 
 prepare() {
-	7z x -p2015 "${srcdir}/${pkgname}.src.7z" -y -o"${srcdir}/${pkgname}" &> /dev/null
+	7z x -p2016 "${srcdir}/${pkgname}.src.7z" -y -o"${srcdir}/${pkgname}" &> /dev/null
 }
 
 build() {
