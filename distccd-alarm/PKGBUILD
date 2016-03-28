@@ -2,7 +2,8 @@
 
 _pkgbase="distccd-alarm"
 pkgname=("${_pkgbase}-armv5" "${_pkgbase}-armv6h" "${_pkgbase}-armv7h")
-pkgver=5.1.0
+pkgver=5.3.0
+pkgrev=4
 pkgrel=1
 pkgdesc="An x-tools & distcc services package for Arch Linux ARM"
 arch=("x86_64")
@@ -11,16 +12,18 @@ license=("GPL" )
 depends=("distcc")
 options=("libtool" "emptydirs" "!strip")
 source=(
-	"alarm-x-tools5.tar.xz::http://archlinuxarm.org/builder/xtools/x-tools.tar.xz"
-	"alarm-x-tools6.tar.xz::http://archlinuxarm.org/builder/xtools/x-tools6h.tar.xz"
-	"alarm-x-tools7.tar.xz::http://archlinuxarm.org/builder/xtools/x-tools7h.tar.xz"
+	"alarm-x-tools5.tar.xz::http://archlinuxarm.org/builder/xtools/${pkgver}-${pkgrev}/x-tools.tar.xz"
+	"alarm-x-tools6.tar.xz::http://archlinuxarm.org/builder/xtools/${pkgver}-${pkgrev}/x-tools6h.tar.xz"
+	"alarm-x-tools7.tar.xz::http://archlinuxarm.org/builder/xtools/${pkgver}-${pkgrev}/x-tools7h.tar.xz"
+	"alarm-x-tools8.tar.xz::http://archlinuxarm.org/builder/xtools/${pkgver}-${pkgrev}/x-tools8.tar.xz"
 	"${_pkgbase}.tar.xz"
 )
 md5sums=(
-	"fb4c6977190b3a1d9d39d59f2cb69ed4"
-	"74ab3f88c0d09c67f047532f48116e2f"
-	"b8e2c1056705cf27332022a02fd6b976"
-	"df2b2236d24e3db0c174112e06a2446a"
+	"e6ed76ee68876ad0a88c1959c7a1894b"
+	"80ab8403a843da1cf1c51b9ee3f8b634"
+	"e722e2e93af5c62fab5251f26fdaf3b8"
+	"336a26f915893a49c66fc7e30d1cc60b"
+	"defa43e9e1f2ed3734e3ceeffc77f6a9"
 )
 
 _package_subarch() {
@@ -70,5 +73,15 @@ package_distccd-alarm-armv7h()
 	local _arch="armv7h"
 	local _srcdir="${srcdir}/x-tools7h"
 	local _pkgdir="${pkgdir}/usr/local/x-tools-armv7h"
+	_package_subarch "${_arch}" "${_srcdir}" "${_pkgdir}"
+}
+
+package_distccd-alarm-armv8()
+{
+	install="${pkgname}.install"
+    backup=("etc/conf.d/distccd-armv8")
+	local _arch="armv8"
+	local _srcdir="${srcdir}/x-tools8"
+	local _pkgdir="${pkgdir}/usr/local/x-tools-armv8"
 	_package_subarch "${_arch}" "${_srcdir}" "${_pkgdir}"
 }
