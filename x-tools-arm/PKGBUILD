@@ -2,8 +2,9 @@
 
 _pkgbase="x-tools"
 pkgbase="${_pkgbase}-arm"
-pkgname=("${_pkgbase}-armv5" "${_pkgbase}-armv6h" "${_pkgbase}-armv7h")
-pkgver=5.1.0
+pkgname=("${_pkgbase}-armv5" "${_pkgbase}-armv6h" "${_pkgbase}-armv7h" "${_pkgbase}-aarch64")
+pkgver=5.3.0
+pkgrev=4
 pkgrel=1
 pkgdesc="An x-tools package for Arch Linux ARM"
 arch=("x86_64")
@@ -11,16 +12,18 @@ url="http://archlinuxarm.org/developers/distcc-cross-compiling"
 license=("GPL" )
 options=("libtool" "emptydirs" "!strip")
 source=(
-	"alarm-x-tools5.tar.xz::http://archlinuxarm.org/builder/xtools/x-tools.tar.xz"
-	"alarm-x-tools6.tar.xz::http://archlinuxarm.org/builder/xtools/x-tools6h.tar.xz"
-	"alarm-x-tools7.tar.xz::http://archlinuxarm.org/builder/xtools/x-tools7h.tar.xz"
+	"alarm-x-tools5.tar.xz::http://archlinuxarm.org/builder/xtools/${pkgver}-${pkgrev}/x-tools.tar.xz"
+	"alarm-x-tools6.tar.xz::http://archlinuxarm.org/builder/xtools/${pkgver}-${pkgrev}/x-tools6h.tar.xz"
+	"alarm-x-tools7.tar.xz::http://archlinuxarm.org/builder/xtools/${pkgver}-${pkgrev}/x-tools7h.tar.xz"
+	"alarm-x-tools8.tar.xz::http://archlinuxarm.org/builder/xtools/${pkgver}-${pkgrev}/x-tools8.tar.xz"
 	"${_pkgbase}.tar.xz"
 )
 md5sums=(
-	"fb4c6977190b3a1d9d39d59f2cb69ed4"
-	"74ab3f88c0d09c67f047532f48116e2f"
-	"b8e2c1056705cf27332022a02fd6b976"
-	"817d78b216b3ce5046eae338de669a15"
+	"e6ed76ee68876ad0a88c1959c7a1894b"
+	"80ab8403a843da1cf1c51b9ee3f8b634"
+	"e722e2e93af5c62fab5251f26fdaf3b8"
+	"336a26f915893a49c66fc7e30d1cc60b"
+	"9b7811dfc21584f2c7de4b5aeda0e561"
 )
 
 package_x-tools-armv5() {
@@ -115,4 +118,30 @@ package_x-tools-armv7h() {
 
 	install -dm755 "${pkgdir}/usr/share/bash-completion/completions"
 	install -Dm644 "${srcdir}/completions/xmake-armv7h" "${pkgdir}/usr/share/bash-completion/completions/"
+}
+
+package_x-tools-aarch64() {
+	install -dm755 "${pkgdir}/opt"
+	cp -ar "${srcdir}/x-tools8/aarch64-unknown-linux-gnueabi" "${pkgdir}/opt/alarm-x-tools-aarch64"
+
+	rm -rf "${pkgdir}/opt/alarm-x-tools-aarch64/build.log.bz2"
+
+	cd "${pkgdir}/opt/alarm-x-tools-aarch64/bin"
+	for f in $(ls --ignore=aarch64-unknown-linux-gnueabi-*)
+	do
+		rm "${f}"
+	done
+
+	install -dm755 "${pkgdir}/usr/bin"
+	for f in *
+	do
+		ln -s "/opt/alarm-x-tools-aarch64/bin/$(basename "${f}")" "${pkgdir}/usr/bin/$(basename "${f}")"
+	done
+
+	install -dm755 "${pkgdir}/usr/bin"
+	install -Dm755 "${srcdir}/bin/xmake-aarch64" "${pkgdir}/usr/bin/"
+	ln -s "xmake-aarch64" "${srcdir}/bin/make-aarch64"
+
+	install -dm755 "${pkgdir}/usr/share/bash-completion/completions"
+	install -Dm644 "${srcdir}/completions/xmake-aarch64" "${pkgdir}/usr/share/bash-completion/completions/"
 }
