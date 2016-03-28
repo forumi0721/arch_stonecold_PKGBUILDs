@@ -1,7 +1,8 @@
 # Maintainer: StoneCold <forumi0721[at]gmail[dot]com>
 
 _pkgbase="distccd-alarm"
-pkgname=("${_pkgbase}-armv5" "${_pkgbase}-armv6h" "${_pkgbase}-armv7h")
+#pkgname=("${_pkgbase}-armv5" "${_pkgbase}-armv6h" "${_pkgbase}-armv7h" "${_pkgbase}-aarch64")
+pkgname=("${_pkgbase}-aarch64")
 pkgver=5.3.0
 pkgrev=4
 pkgrel=1
@@ -23,7 +24,7 @@ md5sums=(
 	"80ab8403a843da1cf1c51b9ee3f8b634"
 	"e722e2e93af5c62fab5251f26fdaf3b8"
 	"336a26f915893a49c66fc7e30d1cc60b"
-	"defa43e9e1f2ed3734e3ceeffc77f6a9"
+	"28c7c8827acaef24b0e955ec62bb393d"
 )
 
 _package_subarch() {
@@ -76,12 +77,12 @@ package_distccd-alarm-armv7h()
 	_package_subarch "${_arch}" "${_srcdir}" "${_pkgdir}"
 }
 
-package_distccd-alarm-armv8()
+package_distccd-alarm-aarch64()
 {
 	install="${pkgname}.install"
-    backup=("etc/conf.d/distccd-armv8")
-	local _arch="armv8"
+    backup=("etc/conf.d/distccd-aarch64")
+	local _arch="aarch64"
 	local _srcdir="${srcdir}/x-tools8"
-	local _pkgdir="${pkgdir}/usr/local/x-tools-armv8"
+	local _pkgdir="${pkgdir}/usr/local/x-tools-aarch64"
 	_package_subarch "${_arch}" "${_srcdir}" "${_pkgdir}"
 }
