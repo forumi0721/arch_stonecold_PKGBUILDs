@@ -2,7 +2,7 @@
 
 pkgname=("scepg-git")
 _gitname="scepg"
-pkgver=20160323.41.e5aa87f
+pkgver=20160330.45.a4b1378
 pkgrel=1
 pkgdesc="scepg"
 arch=("any")
@@ -34,13 +34,14 @@ package() {
 	install -Dm644 "${srcdir}/scepg.service" "${pkgdir}/usr/lib/systemd/system/"
 	install -Dm644 "${srcdir}/scepg.timer" "${pkgdir}/usr/lib/systemd/system/"
 
-	install -dm755 "${pkgdir}/usr/bin"
-	install -Dm755 "${srcdir}/${_gitname}/tv_grab_scepg" "${pkgdir}/usr/bin/"
-
 	install -dm755 "${pkgdir}/var/lib/scepg"
 	install -Dm755 "${srcdir}/${_gitname}/scepg" "${pkgdir}/var/lib/scepg/"
 	install -Dm644 "${srcdir}/${_gitname}/tvchannel.conf" "${pkgdir}/var/lib/scepg/"
 	install -Dm644 "${srcdir}/${_gitname}/tvchannel.list" "${pkgdir}/var/lib/scepg/"
 	install -Dm644 "${srcdir}/${_gitname}/tvchannel.u+.conf" "${pkgdir}/var/lib/scepg/"
+
+	install -dm755 "${pkgdir}/usr/bin"
+	install -Dm755 "${srcdir}/${_gitname}/tv_grab_scepg" "${pkgdir}/usr/bin/"
+	ln -s /var/lib/epg2xml/scepg "${pkgdir}/usr/bin/scepg"
 }
 
