@@ -10,8 +10,8 @@ url="http://www.epg.co.kr/"
 license=("custom")
 depends=("python-beautifulsoup4" "python-lxml")
 backup=(var/lib/scepg/tvchannel.conf)
-conflicts=("scepg-wget" "epg2xml-git" "epg2xml-wget")
-provides=("scepg-wget" "epg2xml-git" "epg2xml-wget")
+conflicts=("scepg-wget" "epg2xml" "epg2xml-git" "epg2xml-wget")
+provides=("scepg-wget" "epg2xml" "epg2xml-git" "epg2xml-wget")
 install="${pkgname}.install"
 source=(
 	"${_gitname}::git+https://github.com/forumi0721/scepg.git"
@@ -42,6 +42,6 @@ package() {
 
 	install -dm755 "${pkgdir}/usr/bin"
 	install -Dm755 "${srcdir}/${_gitname}/tv_grab_scepg" "${pkgdir}/usr/bin/"
-	ln -s /var/lib/epg2xml/scepg "${pkgdir}/usr/bin/scepg"
+	ln -s /var/lib/scepg/scepg "${pkgdir}/usr/bin/scepg"
 }
 
