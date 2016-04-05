@@ -3,5 +3,4 @@
 LOCALPKGVER="Y"
 SOURCETYPE="local"
 SOURCEPATH="ssh://aur@aur.archlinux.org/mc2xml-bin.git"
-ur./g
 

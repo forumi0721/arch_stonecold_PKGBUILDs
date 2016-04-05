@@ -3,5 +3,4 @@
 LOCALPKGVER="Y"
 SOURCETYPE="local"
 SOURCEPATH="ssh://aur@aur.archlinux.org/android-auto-api-simulators.git"
-ur./g
 

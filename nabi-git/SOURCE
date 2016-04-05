@@ -3,5 +3,4 @@
 LOCALPKGVER="N"
 SOURCETYPE="local"
 SOURCEPATH="ssh://aur@aur.archlinux.org/nabi-git.git"
-ur./g
 
