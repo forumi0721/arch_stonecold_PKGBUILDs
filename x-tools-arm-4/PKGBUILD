@@ -5,7 +5,7 @@ pkgbase="${_pkgbase}-arm"
 pkgname=("${_pkgbase}-armv5" "${_pkgbase}-armv6h" "${_pkgbase}-armv7h")
 pkgver=4.9.2
 pkgrev=4
-pkgrel=1
+pkgrel=2
 pkgdesc="An x-tools package for Arch Linux ARM"
 arch=("x86_64")
 url="http://archlinuxarm.org/developers/distcc-cross-compiling"
@@ -21,7 +21,7 @@ md5sums=(
 	"abe09ecca53b0c7f103c0466f9413579"
 	"6b95b0b1c47c66191501ab6918d70a6c"
 	"ccbfa040c1949dad6d32505fa9d973b9"
-	"85740edcf80c87afd02d9dff54c28018"
+	"SKIP"
 )
 
 package_x-tools-4-armv5() {
