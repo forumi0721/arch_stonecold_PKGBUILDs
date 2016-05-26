@@ -1,7 +1,7 @@
 # Maintainer: StoneCold <forumi0721[at]gmail[dot]com>
 
 pkgname=("vlmcsd")
-pkgver=20160307
+pkgver=20160521
 pkgrel=1
 pkgdesc="KMS emulator."
 arch=("arm" "armv6h" "armv7h" "i686" "x86_64")
@@ -10,11 +10,11 @@ license=("GPL")
 makedepends=("p7zip")
 install="${pkgname}.install"
 source=(
-	"${pkgname}.src.7z::http://rghost.net/download/6wLMBYdrT/76375023d160ac035affba2e4e57225594bf3a27/76375023d160ac035affba2e4e57225594bf3a27/vlmcsd-svn818-2016-03-07-Hotbird64-source-only.7z"
+	"${pkgname}.src.7z::http://rgho.st/download/6MfxQSvVV/98bb2044334ffe58a6e66050e6385fdfe7fb4f6b/98bb2044334ffe58a6e66050e6385fdfe7fb4f6b/vlmcsd-svn844-2016-05-21-Hotbird64-source-only.7z"
 	"${pkgname}.service"
 )
 md5sums=(
-	"0add1fd42c28cd91ef28fbc8b83abe49"
+	"c87104532d6a3a3e6643967eea345a60"
 	"197306c5f3bc511fce5f7b30f747a3f6"
 )
 noextract=(
