@@ -12,7 +12,7 @@ pkgname=nginx-with-dav/g" PKGBUILD
 	sed -i "s/\$pkgname/\$_pkgname/g" PKGBUILD
 
 	if [ -z "$(grep "provides=('nginx')" PKGBUILD)" ]; then
-		sed -i "s/\(depends=(.*\)/\1\n\
+		sed -i "s/^\(depends=(.*\)/\1\n\
 conflicts=('nginx' 'nginx-unstable' 'nginx-svn' 'nginx-devel' 'nginx-custom-dev' 'nginx-full')\n\
 provides=('nginx')/g" PKGBUILD
 	fi

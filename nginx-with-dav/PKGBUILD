@@ -1,4 +1,4 @@
-# $Id: PKGBUILD 266697 2016-05-01 00:55:57Z seblu $
+# $Id: PKGBUILD 268786 2016-05-31 18:12:16Z bpiotrowski $
 # Maintainer: Bartłomiej Piotrowski <bpiotrowski@archlinux.org>
 # Maintainer: Sébastien Luttringer
 # Contributor: Sergej Pupykin <pupykin.s+arch@gmail.com>
@@ -7,8 +7,8 @@
 
 _pkgname=nginx
 pkgname=nginx-with-dav
-pkgver=1.10.0
-pkgrel=2
+pkgver=1.10.1
+pkgrel=1
 pkgdesc='Lightweight HTTP server and IMAP/POP3 proxy server with WebDAV missing methods support'
 arch=('i686' 'x86_64' 'arm' 'armv6h' 'armv7h')
 url='http://nginx.org'
@@ -16,6 +16,7 @@ license=('custom')
 depends=('pcre' 'zlib' 'openssl' 'geoip')
 conflicts=('nginx' 'nginx-unstable' 'nginx-svn' 'nginx-devel' 'nginx-custom-dev' 'nginx-full')
 provides=('nginx')
+makedepends=('hardening-wrapper')
 backup=('etc/nginx/fastcgi.conf'
         'etc/nginx/fastcgi_params'
         'etc/nginx/koi-win'
@@ -31,7 +32,7 @@ source=($url/download/nginx-$pkgver.tar.gz
         service
         logrotate
         nginx-dav-ext-module-0.0.3.tar.gz::https://github.com/arut/nginx-dav-ext-module/archive/v0.0.3.tar.gz)
-md5sums=('c184c873d2798c5ba92be95ed1209c02'
+md5sums=('088292d9caf6059ef328aa7dda332e44'
          '5dd4d09914a4403b9df778ec1d66167c'
          '19a26a61c8afe78defb8b4544f79a9a0'
          'SKIP')
