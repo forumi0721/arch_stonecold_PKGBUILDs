@@ -1,0 +1,40 @@
+# Maintainer: StoneCold <forumi0721[at]gmail[dot]com>
+
+pkgname=("ttf-hangul-conf")
+pkgver=0.1
+pkgrel=1
+pkgdesc="Hangul fonts conf"
+arch=("any")
+license=("Other")
+depends=(
+	"fontconfig"
+	"xorg-fonts-encodings"
+	"xorg-font-utils"
+	"ttf-bitstream-vera-sans-mono"
+	"ttf-nanum-fonts"
+	"ttf-win81-fonts-korean"
+)
+source=(
+	"10-antialias.conf"
+	"10-hinting.conf"
+	"30-cjk-aliases.conf"
+)
+md5sums=(
+	"SKIP"
+	"SKIP"
+	"SKIP"
+)
+
+package() {
+	install -dm755 "${pkgdir}/etc/fonts/conf.avail"
+	install -Dm644 "${srcdir}/10-antialias.conf" "${pkgdir}/etc/fonts/conf.avail"
+	install -Dm644 "${srcdir}/10-hinting.conf" "${pkgdir}/etc/fonts/conf.avail"
+	install -Dm644 "${srcdir}/30-cjk-aliases.conf" "${pkgdir}/etc/fonts/conf.avail"
+	
+	install -dm755 "${pkgdir}/etc/fonts/conf.d"
+	ln -s "/etc/fonts/conf.avail/10-antialias.conf" "${pkgdir}/etc/fonts/conf.d/"
+	ln -s "/etc/fonts/conf.avail/10-hinting.conf" "${pkgdir}/etc/fonts/conf.d/"
+	ln -s "/etc/fonts/conf.avail/30-cjk-aliases.conf" "${pkgdir}/etc/fonts/conf.d/"
+	ln -s "/etc/fonts/conf.avail/90-fonts-nanum-coding.conf" "${pkgdir}/etc/fonts/conf.d/"
+	ln -s "/etc/fonts/conf.avail/90-fonts-nanum.conf" "${pkgdir}/etc/fonts/conf.d/"
+}
