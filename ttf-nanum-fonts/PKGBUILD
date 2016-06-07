@@ -2,7 +2,7 @@
 
 pkgname=("ttf-nanum-fonts")
 pkgver=0.1
-pkgrel=2
+pkgrel=3
 pkgdesc="Nanum fonts"
 arch=("any")
 url="http://hangul.naver.com"
@@ -11,10 +11,22 @@ depends=("fontconfig" "xorg-fonts-encodings" "xorg-font-utils")
 conflicts=("ttf-nanum" "ttf-nanumgothic_coding")
 provides=("ttf-font")
 install="${pkgname}.install"
-source=("${pkgname}.tar.xz")
-md5sums=("31b3d7b7964c4fa409f80bb0d409a82d")
+source=(
+	"${pkgname}.tar.xz"
+	"90-fonts-nanum.conf"
+	"90-fonts-nanum-coding.conf"
+)
+md5sums=(
+	"31b3d7b7964c4fa409f80bb0d409a82d"
+	"SKIP"
+	"SKIP"
+)
 
 package() {
 	install -dm755 "${pkgdir}/usr/share/fonts/TTF"
 	install -Dm644 "${srcdir}/"*.ttf "${pkgdir}/usr/share/fonts/TTF/"
+
+	install -dm755 "${pkgdir}/etc/fonts/conf.avail"
+	install -Dm644 "${srcdir}/90-fonts-nanum.conf" "${pkgdir}/etc/fonts/conf.avail"
+	install -Dm644 "${srcdir}/90-fonts-nanum-coding.conf" "${pkgdir}/etc/fonts/conf.avail"
 }
