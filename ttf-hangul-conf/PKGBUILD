@@ -2,7 +2,7 @@
 
 pkgname=("ttf-hangul-conf")
 pkgver=0.1
-pkgrel=1
+pkgrel=2
 pkgdesc="Hangul fonts conf"
 arch=("any")
 license=("Other")
@@ -12,8 +12,8 @@ depends=(
 	"xorg-font-utils"
 	"ttf-bitstream-vera-sans-mono"
 	"ttf-nanum-fonts"
-	"ttf-win81-fonts-korean"
 )
+#"ttf-win81-fonts-korean"
 source=(
 	"10-antialias.conf"
 	"10-hinting.conf"
@@ -34,6 +34,7 @@ package() {
 	install -dm755 "${pkgdir}/etc/fonts/conf.d"
 	ln -s "/etc/fonts/conf.avail/10-antialias.conf" "${pkgdir}/etc/fonts/conf.d/"
 	ln -s "/etc/fonts/conf.avail/10-hinting.conf" "${pkgdir}/etc/fonts/conf.d/"
+	ln -s "/etc/fonts/conf.avail/11-lcdfilter-default.conf" "${pkgdir}/etc/fonts/conf.d/"
 	ln -s "/etc/fonts/conf.avail/30-cjk-aliases.conf" "${pkgdir}/etc/fonts/conf.d/"
 	ln -s "/etc/fonts/conf.avail/90-fonts-nanum-coding.conf" "${pkgdir}/etc/fonts/conf.d/"
 	ln -s "/etc/fonts/conf.avail/90-fonts-nanum.conf" "${pkgdir}/etc/fonts/conf.d/"
