@@ -5,7 +5,7 @@ pkgbase="${_pkgbase}-arm"
 pkgname=("${_pkgbase}-armv5" "${_pkgbase}-armv6h" "${_pkgbase}-armv7h")
 pkgver=4.9.2
 pkgrev=4
-pkgrel=2
+pkgrel=3
 pkgdesc="An x-tools package for Arch Linux ARM"
 arch=("x86_64")
 url="http://archlinuxarm.org/developers/distcc-cross-compiling"
@@ -52,10 +52,6 @@ package_x-tools-4-armv5() {
 
 	install -dm755 "${pkgdir}/usr/share/bash-completion/completions"
 	install -Dm644 "${srcdir}/completions/xmake-4-armv5" "${pkgdir}/usr/share/bash-completion/completions/"
-
-	##for qemu
-	#install -dm755 "${pkgdir}/etc/qemu-binfmt"
-	#ln -s "/opt/alarm-x-tools-4-armv5/arm-unknown-linux-gnueabi/sysroot" "${pkgdir}/etc/qemu-binfmt/arm"
 }
 
 package_x-tools-4-armv6h() {
@@ -82,7 +78,7 @@ package_x-tools-4-armv6h() {
 
 	install -dm755 "${pkgdir}/usr/bin"
 	install -Dm755 "${srcdir}/bin/xmake-4-armv6h" "${pkgdir}/usr/bin/"
-	ln -s "xmake-4-armv6h" "${srcdir}/bin/make-armv6h"
+	ln -s "xmake-4-armv6h" "${srcdir}/bin/make-4-armv6h"
 
 	install -dm755 "${pkgdir}/usr/share/bash-completion/completions"
 	install -Dm644 "${srcdir}/completions/xmake-4-armv6h" "${pkgdir}/usr/share/bash-completion/completions/"
@@ -112,7 +108,7 @@ package_x-tools-4-armv7h() {
 
 	install -dm755 "${pkgdir}/usr/bin"
 	install -Dm755 "${srcdir}/bin/xmake-4-armv7h" "${pkgdir}/usr/bin/"
-	ln -s "xmake-4-armv7h" "${srcdir}/bin/make-armv7h"
+	ln -s "xmake-4-armv7h" "${srcdir}/bin/make-4-armv7h"
 
 	install -dm755 "${pkgdir}/usr/share/bash-completion/completions"
 	install -Dm644 "${srcdir}/completions/xmake-4-armv7h" "${pkgdir}/usr/share/bash-completion/completions/"
