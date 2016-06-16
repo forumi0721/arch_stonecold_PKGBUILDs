@@ -2,31 +2,41 @@
 
 pkgname=("ttf-nanum-fonts")
 pkgver=0.1
-pkgrel=3
+pkgrel=4
 pkgdesc="Nanum fonts"
 arch=("any")
 url="http://hangul.naver.com"
 license=("OFL")
 depends=("fontconfig" "xorg-fonts-encodings" "xorg-font-utils")
-conflicts=("ttf-nanum" "ttf-nanumgothic_coding")
+makedepends=("p7zip")
+conflicts=("ttf-nanum")
 provides=("ttf-font")
 install="${pkgname}.install"
 source=(
-	"${pkgname}.tar.xz"
+	"http://appdown.naver.com/naver/font/NanumFont/setup/NanumFontSetup_TTF_BARUNGOTHIC_hangeulcamp.exe"
+	"http://cdn.naver.com/naver/NanumFont/setup/NanumFontSetup_TTF_GOTHIC_hangeulcamp.exe"
+	"http://cdn.naver.com/naver/NanumFont/setup/NanumFontSetup_TTF_MYUNGJO_hangeulcamp.exe"
 	"90-fonts-nanum.conf"
-	"90-fonts-nanum-coding.conf"
 )
 md5sums=(
-	"31b3d7b7964c4fa409f80bb0d409a82d"
+	"SKIP"
+	"SKIP"
 	"SKIP"
 	"SKIP"
 )
+
+prepare() {
+	cd "${srcdir}"
+	rm -rf *.ttf
+	7z x -y NanumFontSetup_TTF_BARUNGOTHIC_hangeulcamp.exe "\$WINDIR/Fonts" > /dev/null
+	7z x -y NanumFontSetup_TTF_GOTHIC_hangeulcamp.exe "\$WINDIR/Fonts" > /dev/null
+	7z x -y NanumFontSetup_TTF_MYUNGJO_hangeulcamp.exe "\$WINDIR/Fonts" > /dev/null
+}
 
 package() {
 	install -dm755 "${pkgdir}/usr/share/fonts/TTF"
-	install -Dm644 "${srcdir}/"*.ttf "${pkgdir}/usr/share/fonts/TTF/"
+	install -Dm644 "${srcdir}/\$WINDIR/Fonts/"*.ttf "${pkgdir}/usr/share/fonts/TTF/"
 
 	install -dm755 "${pkgdir}/etc/fonts/conf.avail"
 	install -Dm644 "${srcdir}/90-fonts-nanum.conf" "${pkgdir}/etc/fonts/conf.avail"
-	install -Dm644 "${srcdir}/90-fonts-nanum-coding.conf" "${pkgdir}/etc/fonts/conf.avail"
 }
