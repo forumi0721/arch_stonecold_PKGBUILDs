@@ -2,7 +2,7 @@
 
 pkgname=("ttf-hangul-conf")
 pkgver=0.1
-pkgrel=2
+pkgrel=3
 pkgdesc="Hangul fonts conf"
 arch=("any")
 license=("Other")
@@ -12,6 +12,7 @@ depends=(
 	"xorg-font-utils"
 	"ttf-bitstream-vera-sans-mono"
 	"ttf-nanum-fonts"
+	"ttf-nanum-coding-fonts"
 )
 #"ttf-win81-fonts-korean"
 source=(
