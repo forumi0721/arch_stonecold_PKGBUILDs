@@ -1,0 +1,40 @@
+# Maintainer: StoneCold <forumi0721[at]gmail[dot]com>
+
+pkgname=("ttf-nanum-coding-fonts")
+pkgver=2.0
+pkgrel=1
+pkgdesc="Nanum Gothic Coding Fonts"
+arch=("any")
+url="http://hangul.naver.com"
+license=("OFL")
+depends=("fontconfig" "xorg-fonts-encodings" "xorg-font-utils")
+makedepends=("p7zip")
+conflicts=("ttf-nanum" "ttf-nanumgothic_coding")
+provides=("ttf-font")
+install="${pkgname}.install"
+source=(
+	"http://dev.naver.com/frs/download.php/444/NanumGothicCoding_Setup-2.0.exe"
+	"90-fonts-nanum-coding.conf"
+)
+md5sums=(
+	"SKIP"
+	"SKIP"
+)
+
+prepare() {
+	cd "${srcdir}"
+	rm -rf *.ttf
+	7z x -y NanumGothicCoding_Setup-2.0.exe "*.ttf" > /dev/null
+	mv *-Bold.ttf NanumGothicCodingBold
+	mv *.ttf NanumGothicCoding.ttf
+	mv NanumGothicCodingBold NanumGothicCodingBold.ttf
+}
+
+package() {
+	install -dm755 "${pkgdir}/usr/share/fonts/TTF"
+	install -Dm644 "${srcdir}/"*.ttf "${pkgdir}/usr/share/fonts/TTF/"
+
+	install -dm755 "${pkgdir}/etc/fonts/conf.avail"
+	install -Dm644 "${srcdir}/90-fonts-nanum-coding.conf" "${pkgdir}/etc/fonts/conf.avail"
+}
+
