@@ -1,6 +1,5 @@
 #!/bin/sh
 
-LOCALPKGVER="Y"
-SOURCETYPE="local"
-SOURCEPATH="https://aur.archlinux.org/packages/qe/qemu-user-static-deb/qemu-user-static-deb.tar.gz"
+SOURCETYPE="AUR4"
+SOURCEPATH="https://aur.archlinux.org/qemu-user-static-deb.git"
 
