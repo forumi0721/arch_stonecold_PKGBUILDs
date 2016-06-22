@@ -1,8 +1,8 @@
 # Maintainer: StoneCold <forumi0721[at]gmail[dot]com>
 
 pkgname=("ttf-nanum-fonts")
-pkgver=0.1
-pkgrel=5
+pkgver=0.2
+pkgrel=1
 pkgdesc="Nanum fonts"
 arch=("any")
 url="http://hangul.naver.com"
@@ -13,7 +13,6 @@ conflicts=("ttf-nanum")
 provides=("ttf-font")
 install="${pkgname}.install"
 source=(
-	"http://appdown.naver.com/naver/font/NanumFont/setup/NanumFontSetup_TTF_BARUNGOTHIC_hangeulcamp.exe"
 	"http://cdn.naver.com/naver/NanumFont/setup/NanumFontSetup_TTF_GOTHIC_hangeulcamp.exe"
 	"http://cdn.naver.com/naver/NanumFont/setup/NanumFontSetup_TTF_MYUNGJO_hangeulcamp.exe"
 	"90-fonts-nanum.conf"
@@ -22,13 +21,11 @@ md5sums=(
 	"SKIP"
 	"SKIP"
 	"SKIP"
-	"SKIP"
 )
 
 prepare() {
 	cd "${srcdir}"
 	rm -rf *.ttf
-	7z x -y NanumFontSetup_TTF_BARUNGOTHIC_hangeulcamp.exe "\$WINDIR/Fonts" > /dev/null
 	7z x -y NanumFontSetup_TTF_GOTHIC_hangeulcamp.exe "\$WINDIR/Fonts" > /dev/null
 	7z x -y NanumFontSetup_TTF_MYUNGJO_hangeulcamp.exe "\$WINDIR/Fonts" > /dev/null
 }
@@ -38,5 +35,5 @@ package() {
 	install -Dm644 "${srcdir}/\$WINDIR/Fonts/"*.ttf "${pkgdir}/usr/share/fonts/TTF/"
 
 	install -dm755 "${pkgdir}/etc/fonts/conf.avail"
-	install -Dm644 "${srcdir}/90-fonts-nanum.conf" "${pkgdir}/etc/fonts/conf.avail"
+	install -Dm644 "${srcdir}/90-fonts-nanum.conf" "${pkgdir}/etc/fonts/conf.avail/"
 }
