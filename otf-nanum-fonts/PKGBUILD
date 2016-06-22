@@ -1,8 +1,8 @@
 # Maintainer: StoneCold <forumi0721[at]gmail[dot]com>
 
 pkgname=("otf-nanum-fonts")
-pkgver=0.1
-pkgrel=4
+pkgver=0.2
+pkgrel=1
 pkgdesc="Nanum fonts"
 arch=("any")
 url="http://hangul.naver.com"
@@ -13,13 +13,11 @@ conflicts=("ttf-nanum" "ttf-nanum-fonts")
 provides=("ttf-font" "ttf-nanum-fonts")
 install="${pkgname}.install"
 source=(
-	"http://appdown.naver.com/naver/font/NanumFont/setup/NanumFontSetup_OTF_BARUNGOTHIC_hangeulcamp.exe"
 	"http://cdn.naver.com/naver/NanumFont/setup/NanumFontSetup_OTF_GOTHIC_hangeulcamp.exe"
 	"http://cdn.naver.com/naver/NanumFont/setup/NanumFontSetup_OTF_MYUNGJO_hangeulcamp.exe"
-	"90-fonts-nanum.conf"
+	"90-fonts-nanum-otf.conf"
 )
 md5sums=(
-	"SKIP"
 	"SKIP"
 	"SKIP"
 	"SKIP"
@@ -28,7 +26,6 @@ md5sums=(
 prepare() {
 	cd "${srcdir}"
 	rm -rf *.ttf
-	7z x -y NanumFontSetup_OTF_BARUNGOTHIC_hangeulcamp.exe "\$WINDIR/Fonts" > /dev/null
 	7z x -y NanumFontSetup_OTF_GOTHIC_hangeulcamp.exe "\$WINDIR/Fonts" > /dev/null
 	7z x -y NanumFontSetup_OTF_MYUNGJO_hangeulcamp.exe "\$WINDIR/Fonts" > /dev/null
 }
@@ -38,5 +35,5 @@ package() {
 	install -Dm644 "${srcdir}/\$WINDIR/Fonts/"*.otf "${pkgdir}/usr/share/fonts/OTF/"
 
 	install -dm755 "${pkgdir}/etc/fonts/conf.avail"
-	install -Dm644 "${srcdir}/90-fonts-nanum.conf" "${pkgdir}/etc/fonts/conf.avail"
+	install -Dm644 "${srcdir}/90-fonts-nanum-otf.conf" "${pkgdir}/etc/fonts/conf.avail/"
 }
