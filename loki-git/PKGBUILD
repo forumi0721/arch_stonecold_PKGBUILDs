@@ -2,7 +2,7 @@
 
 pkgname=("loki-git")
 _gitname="loki"
-pkgver=20160102.89.0093dd8
+pkgver=20160627.90.784e86f
 pkgrel=1
 pkgdesc="Loki: tools for custom kernels and recoveries on AT&T and Verizon Samsung Galaxy S4 and various LG devices"
 arch=("i686" "x86_64" "arm" "armv6h" "armv7h")
