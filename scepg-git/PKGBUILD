@@ -2,14 +2,14 @@
 
 pkgname=("scepg-git")
 _gitname="scepg"
-pkgver=20160703.56.d2958db
+pkgver=20160703.59.045d945
 pkgrel=1
 pkgdesc="scepg"
 arch=("any")
 url="http://www.epg.co.kr/"
 license=("custom")
 depends=("python-beautifulsoup4" "python-lxml")
-backup=(var/lib/scepg/tvchannel.conf)
+backup=(etc/tvchannel.conf)
 conflicts=("scepg-wget" "epg2xml" "epg2xml-git" "epg2xml-wget")
 provides=("scepg-wget" "epg2xml" "epg2xml-git" "epg2xml-wget")
 install="${pkgname}.install"
@@ -36,8 +36,12 @@ package() {
 
 	install -dm755 "${pkgdir}/var/lib/scepg"
 	install -Dm755 "${srcdir}/${_gitname}/scepg" "${pkgdir}/var/lib/scepg/"
-	install -Dm644 "${srcdir}/${_gitname}/tvchannel.conf" "${pkgdir}/var/lib/scepg/"
 	install -Dm644 "${srcdir}/${_gitname}/tvchannel.list" "${pkgdir}/var/lib/scepg/"
+	install -Dm644 "${srcdir}/${_gitname}/tvchannel.conf.naver" "${pkgdir}/var/lib/scepg/"
+	install -Dm644 "${srcdir}/${_gitname}/tvchannel.conf.uplus" "${pkgdir}/var/lib/scepg/"
+
+	install -dm755 "${pkgdir}/etc"
+	install -Dm644 "${srcdir}/${_gitname}/tvchannel.conf" "${pkgdir}/etc/"
 
 	install -dm755 "${pkgdir}/usr/bin"
 	install -Dm755 "${srcdir}/${_gitname}/tv_grab_scepg" "${pkgdir}/usr/bin/"
