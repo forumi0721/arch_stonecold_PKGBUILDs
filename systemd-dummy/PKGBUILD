@@ -1,0 +1,27 @@
+# Maintainer: StoneCold <forumi0721[at]gmail[dot]com>
+
+pkgname=("systemd-dummy")
+pkgver=0.1
+pkgrel=1
+pkgdesc="systemd-dummy"
+arch=("any")
+url="https://stonecold.kr/"
+license=("custom")
+provides=("systemd")
+conflicts=("systemd")
+replaces=("systemd")
+source=(
+	"systemd-sysusers"
+	"systemd-tmpfiles"
+)
+md5sums=(
+	"SKIP"
+	"SKIP"
+)
+
+package() {
+	install -dm755 "${pkgdir}/usr/bin/"
+	install -Dm755 "${srcdir}/systemd-sysusers" "${pkgdir}/usr/bin/"
+	install -Dm755 "${srcdir}/systemd-tmpfiles" "${pkgdir}/usr/bin/"
+}
+
