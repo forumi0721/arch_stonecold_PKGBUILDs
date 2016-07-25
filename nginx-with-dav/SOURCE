@@ -4,7 +4,7 @@ LOCALPKGVER="N"
 SOURCETYPE="RSYNC"
 SOURCEPATH="rsync.archlinux.org::abs/x86_64/extra/nginx"
 
-function GetSourcePatch {
+GetSourcePatch() {
 	sed -i "s/^arch=('i686' 'x86_64')$/arch=('i686' 'x86_64' 'arm' 'armv6h' 'armv7h')/g" PKGBUILD
 	sed -i "s/^pkgdesc=.*$/pkgdesc='Lightweight HTTP server and IMAP\/POP3 proxy server with WebDAV missing methods support'/g" PKGBUILD
 	sed -i "s/^pkgname=nginx$/_pkgname=nginx\n\
