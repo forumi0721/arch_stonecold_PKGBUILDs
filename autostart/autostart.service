@@ -2,12 +2,15 @@
 Description=Autostart custom script
 After=local-fs.target
 After=network.target
-
-[Install]
-WantedBy=multi-user.target
+After=smbd.target
+After=nmbd.target
+After=samba.target
 
 [Service]
 User=root
 Type=oneshot
 RemainAfterExit=yes
 ExecStart=/usr/bin/autostart.sh
+
+[Install]
+WantedBy=multi-user.target
