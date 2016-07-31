@@ -1,5 +1,5 @@
 #!/bin/sh
 
-LOCALPKGVER="N"
+LOCALPKGVER="Y"
 SOURCETYPE="local"
 

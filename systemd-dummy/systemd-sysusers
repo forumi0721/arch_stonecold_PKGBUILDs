@@ -1,4 +1,74 @@
 #!/usr/bin/env bash
 
-echo $*
-echo $@
+echo "$(id) ${0} $@"
+
+OPTION=
+ROOT=
+FILE=
+
+for i in "$@"
+do
+	case $i in
+		-h|--help)
+			OPTION=HELP
+			;;
+		--version)
+			OPTION=VERSION
+			;;
+		--root=*)
+			ROOT="${i#*=}"
+			;;
+		*)
+			FILE="${i}"
+			;;
+	esac
+done
+
+if [ "${OPTION}" == "HELP" -o "${OPTION}" == "VERSION" ]; then
+	exit 0
+fi
+
+FILE=/usr/lib/sysusers.d/$(basename "${FILE}")
+if [ ! -e "${FILE}" ]; then
+	exit 1
+fi
+
+fn_process() {
+	local type=${1}
+	local name=${2}
+	local id=${3}
+	local desc=${4}
+	local home=${5}
+
+	if [ "${type}" == "u" ]; then
+		local id_opt=
+		local desc_opt=
+		local home_opt=
+		if [ "${id}" != "-" ]; then
+			id_opt="-u ${id}"
+		fi
+		if [ ! -z "${desc}" ]; then
+			desc_opt="-c \"${desc}\""
+		fi
+		if [ ! -z "${home}" ]; then
+			home_opt="-d \"${home}\""
+		fi
+		echo useradd -m -r -s /sbin/nologin ${id_opt} ${desc_opt} ${home_opt} ${name}
+		eval useradd -m -r -s /sbin/nologin ${id_opt} ${desc_opt} ${home_opt} ${name}
+	elif [ "${type}" == "g" ]; then
+		local id_opt=
+		if [ "${id}" != "-" ]; then
+			id_opt="-g ${id}"
+		fi
+		eval groupadd -r ${id_opt} ${name}
+	elif [ "${type}" == "m" ]; then
+		eval usermod -a -g ${id} ${name}
+	fi
+}
+
+while read -r line
+do
+	eval fn_process ${line}
+done <<< "$(cat "${FILE}")"
+
+exit 0
