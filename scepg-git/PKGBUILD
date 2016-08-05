@@ -2,7 +2,7 @@
 
 pkgname=("scepg-git")
 _gitname="scepg"
-pkgver=20160724.64.0cc3dff
+pkgver=20160805.65.3c3fa42
 pkgrel=1
 pkgdesc="scepg"
 arch=("any")
@@ -34,17 +34,16 @@ package() {
 	install -Dm644 "${srcdir}/scepg.service" "${pkgdir}/usr/lib/systemd/system/"
 	install -Dm644 "${srcdir}/scepg.timer" "${pkgdir}/usr/lib/systemd/system/"
 
+	install -dm755 "${pkgdir}/usr/bin"
+	install -Dm755 "${srcdir}/${_gitname}/tv_grab_scepg" "${pkgdir}/usr/bin/"
+	install -Dm755 "${srcdir}/${_gitname}/scepg" "${pkgdir}/usr/bin/"
+
 	install -dm755 "${pkgdir}/var/lib/scepg"
-	install -Dm755 "${srcdir}/${_gitname}/scepg" "${pkgdir}/var/lib/scepg/"
-	install -Dm644 "${srcdir}/${_gitname}/tvchannel.list" "${pkgdir}/var/lib/scepg/"
-	install -Dm644 "${srcdir}/${_gitname}/tvchannel.conf.naver" "${pkgdir}/var/lib/scepg/"
-	install -Dm644 "${srcdir}/${_gitname}/tvchannel.conf.uplus" "${pkgdir}/var/lib/scepg/"
+	#install -Dm644 "${srcdir}/${_gitname}/tvchannel.list" "${pkgdir}/var/lib/scepg/"
+	#install -Dm644 "${srcdir}/${_gitname}/tvchannel.conf.naver" "${pkgdir}/var/lib/scepg/"
+	#install -Dm644 "${srcdir}/${_gitname}/tvchannel.conf.uplus" "${pkgdir}/var/lib/scepg/"
 
 	install -dm755 "${pkgdir}/etc"
 	install -Dm644 "${srcdir}/${_gitname}/tvchannel.conf" "${pkgdir}/etc/"
-
-	install -dm755 "${pkgdir}/usr/bin"
-	install -Dm755 "${srcdir}/${_gitname}/tv_grab_scepg" "${pkgdir}/usr/bin/"
-	ln -s /var/lib/scepg/scepg "${pkgdir}/usr/bin/scepg"
 }
 
