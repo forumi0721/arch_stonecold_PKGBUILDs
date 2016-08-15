@@ -1,0 +1,11 @@
+[Trigger]
+Type = File
+Operation = Install
+Operation = Upgrade
+Operation = Remove
+Target = usr/share/doc/*
+
+[Action]
+Description = Remove /usr/share/doc...
+When = PostTransaction
+Exec = /bin/sh -c 'rm -rf /usr/share/doc/*'

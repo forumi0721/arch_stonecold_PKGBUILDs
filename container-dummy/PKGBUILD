@@ -1,0 +1,51 @@
+# Maintainer: StoneCold <forumi0721[at]gmail[dot]com>
+
+pkgname=("container-dummy")
+pkgver=0.2
+pkgrel=1
+pkgdesc="container-dummy"
+arch=("any")
+url="https://stonecold.kr/"
+license=("custom")
+provides=("systemd" "udev" "man-db" "man-pages" "texinfo")
+conflicts=("systemd" "udev" "man-db" "man-pages" "texinfo")
+replaces=("systemd" "udev" "man-db" "man-pages" "texinfo")
+source=(
+	"systemctl"
+	"systemd-sysusers"
+	"systemd-tmpfiles"
+	"locale.hook"
+	"man-db.hook"
+	"texinfo.hook"
+	"doc.hook"
+	"man"
+	"info"
+)
+md5sums=(
+	"SKIP"
+	"SKIP"
+	"SKIP"
+	"SKIP"
+	"SKIP"
+	"SKIP"
+	"SKIP"
+	"SKIP"
+	"SKIP"
+)
+
+package() {
+	install -dm755 "${pkgdir}/usr/bin/"
+	install -Dm755 "${srcdir}/systemctl" "${pkgdir}/usr/bin/"
+	install -Dm755 "${srcdir}/systemd-sysusers" "${pkgdir}/usr/bin/"
+	install -Dm755 "${srcdir}/systemd-tmpfiles" "${pkgdir}/usr/bin/"
+
+	install -Dm755 "${srcdir}/man" "${pkgdir}/usr/bin/"
+	install -Dm755 "${srcdir}/info" "${pkgdir}/usr/bin/"
+
+	install -dm755 "${pkgdir}/usr/share/libalpm/hooks"
+	install -Dm644 "${srcdir}/locale.hook" "${pkgdir}/usr/share/libalpm/hooks/"
+	install -Dm644 "${srcdir}/man-db.hook" "${pkgdir}/usr/share/libalpm/hooks/"
+	install -Dm644 "${srcdir}/texinfo.hook" "${pkgdir}/usr/share/libalpm/hooks/"
+	install -Dm644 "${srcdir}/doc.hook" "${pkgdir}/usr/share/libalpm/hooks/"
+}
+

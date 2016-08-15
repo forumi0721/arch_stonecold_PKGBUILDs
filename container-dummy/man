@@ -1,0 +1,6 @@
+#!/bin/sh
+
+echo man "${@}"
+
+exit 0
+

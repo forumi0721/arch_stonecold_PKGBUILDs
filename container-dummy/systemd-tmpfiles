@@ -1,0 +1,86 @@
+#!/usr/bin/env bash
+
+echo "$(id) ${0} $@"
+
+OPTION=
+PREFIX=
+EXCLUDE_PREFIX=
+ROOT=
+FILE=
+
+for i in "$@"
+do
+	case $i in
+		-h|--help)
+			OPTION=HELP
+			;;
+		--version)
+			OPTION=VERSION
+			;;
+		--create)
+			OPTION=CREATE
+			;;
+		--clean)
+			OPTION=CLEAN
+			;;
+		--remove)
+			OPTION=REMOVE
+			;;
+		--boot)
+			OPTION=BOOT
+			;;
+		--prefix=*)
+			PREFIX="${i#*=}"
+			;;
+		--exclude-prefix=*)
+			EXCLUDE_PREFIX="${i#*=}"
+			;;
+		--root=*)
+			ROOT="${i#*=}"
+			;;
+		*)
+			FILE="${i}"
+			;;
+	esac
+done
+
+if [ "${OPTION}" == "HELP" -o "${OPTION}" == "VERSION" ]; then
+	exit 0
+fi
+
+FILE=/usr/lib/tmpfiles.d/$(basename "${FILE}")
+if [ ! -e "${FILE}" ]; then
+	exit 1
+fi
+
+fn_process() {
+	local option=${1}
+	local type=${2}
+	local path=${3}
+	local mode=${4:-0755}
+	local uid=${5:-0}
+	local gid=${6:-0}
+	local age=${7}
+	local arg=${8}
+
+	if [ "${option}" == "CREATE" ]; then
+		if [ "${type}" == "d" ]; then
+			echo mkdir -pm${mode} "${path}"
+			eval mkdir -pm${mode} "${path}"
+			echo chown -R ${uid}:${gid} "${path}"
+			eval chown -R ${uid}:${gid} "${path}"
+		elif [ "${type}" == "D" ]; then
+			echo mkdir -pm${mode} "${path}"
+			eval mkdir -pm${mode} "${path}"
+			echo chown -R ${uid}:${gid} "${path}"
+			eval chown -R ${uid}:${gid} "${path}"
+		fi
+	fi
+}
+
+while read -r line
+do
+	eval fn_process ${OPTION} ${line}
+done <<< "$(cat "${FILE}")"
+
+exit 0

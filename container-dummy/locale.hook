@@ -1,0 +1,11 @@
+[Trigger]
+Type = File
+Operation = Install
+Operation = Upgrade
+Operation = Remove
+Target = usr/share/locale/*
+
+[Action]
+Description = Remove /usr/share/locale...
+When = PostTransaction
+Exec = /bin/sh -c 'cd /usr/share/locale ; ls /usr/share/locale --ignore locale.alias --ignore en --ignore en_US --ignore ko | xargs rm -rf'

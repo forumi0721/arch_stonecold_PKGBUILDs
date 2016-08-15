@@ -1,0 +1,11 @@
+[Trigger]
+Type = File
+Operation = Install
+Operation = Upgrade
+Operation = Remove
+Target = usr/share/info/*
+
+[Action]
+Description = Remove /usr/share/info...
+When = PostTransaction
+Exec = /bin/sh -c 'rm -rf /usr/share/info/*'

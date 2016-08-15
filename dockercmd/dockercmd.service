@@ -1,0 +1,14 @@
+[Unit]
+Description=dockercmd autostart
+After=local-fs.target
+After=network.target
+After=docker.target
+
+[Service]
+User=root
+Type=oneshot
+RemainAfterExit=yes
+ExecStart=/usr/bin/dockercmd autostart
+
+[Install]
+WantedBy=multi-user.target
