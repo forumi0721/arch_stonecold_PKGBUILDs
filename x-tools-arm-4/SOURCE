@@ -1,5 +1,13 @@
 #!/bin/sh
 
-LOCALPKGVER="Y"
 SOURCETYPE="local"
+
+CheckUpdate() {
+	local version=$(curl -s https://archlinuxarm.org/builder/xtools/ | sed 's/\r//' | grep '\-$' | grep '^<a href="4' | tail -1 | sed 's/^<a href="\(.*\)\/".*$/\1/g')
+
+	local ver_1=$(sed 's/\(.*\)-\(.*\)/\1/g' <<< ${version})
+	local ver_2=$(sed 's/\(.*\)-\(.*\)/\2/g' <<< ${version})
+
+	sed -i -e "s/^pkgver=.*$/pkgver=${ver_1}/g" -e "s/^pkgrel=.*$/pkgrel=${ver_2}/g" PKGBUILD
+}
 

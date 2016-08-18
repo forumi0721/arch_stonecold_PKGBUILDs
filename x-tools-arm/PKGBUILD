@@ -4,25 +4,24 @@ _pkgbase="x-tools"
 pkgbase="${_pkgbase}-arm"
 pkgname=("${_pkgbase}-armv5" "${_pkgbase}-armv6h" "${_pkgbase}-armv7h" "${_pkgbase}-aarch64")
 pkgver=6.1.1
-pkgrev=1
-pkgrel=1
+pkgrel=4
 pkgdesc="An x-tools package for Arch Linux ARM"
 arch=("x86_64")
 url="http://archlinuxarm.org/developers/distcc-cross-compiling"
 license=("GPL" )
 options=("libtool" "emptydirs" "!strip")
 source=(
-	"alarm-x-tools5.tar.xz::http://archlinuxarm.org/builder/xtools/x-tools.tar.xz"
-	"alarm-x-tools6.tar.xz::http://archlinuxarm.org/builder/xtools/x-tools6h.tar.xz"
-	"alarm-x-tools7.tar.xz::http://archlinuxarm.org/builder/xtools/x-tools7h.tar.xz"
-	"alarm-x-tools8.tar.xz::http://archlinuxarm.org/builder/xtools/x-tools8.tar.xz"
+	"alarm-x-tools5.tar.xz::https://archlinuxarm.org/builder/xtools/x-tools.tar.xz"
+	"alarm-x-tools6.tar.xz::https://archlinuxarm.org/builder/xtools/x-tools6h.tar.xz"
+	"alarm-x-tools7.tar.xz::https://archlinuxarm.org/builder/xtools/x-tools7h.tar.xz"
+	"alarm-x-tools8.tar.xz::https://archlinuxarm.org/builder/xtools/x-tools8.tar.xz"
 	"${_pkgbase}.tar.xz"
 )
 md5sums=(
-	"91b662d88d63ef6c96bc4e65008e66b2"
-	"14e3951d6e00f679d26341e40fbf8365"
-	"16910664eaa293225ab4afdf469175fd"
-	"66728b4b7e11612742b4ddf229d72860"
+	"SKIP"
+	"SKIP"
+	"SKIP"
+	"SKIP"
 	"SKIP"
 )
 
