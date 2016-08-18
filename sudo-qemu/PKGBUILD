@@ -1,0 +1,54 @@
+# Maintainer: StoneCold <forumi0721[at]gmail[dot]com>
+
+_sudover=1.8.17.p1-1
+_qemuver=2.6+dfsg-3
+pkgname=("sudo-qemu")
+pkgver=${_sudover/-/_}.${_qemuver/-/_}
+pkgrel=1
+pkgdesc="Give certain users the ability to run some commands as root"
+arch=("arm" "armv6h" "armv7h" "aarch64")
+license=("CUSTOM")
+depends=("glibc" "pam" "libldap")
+provides=("sudo")
+conflicts=("sudo")
+replaces=("sudo")
+backup=('etc/sudoers' 'etc/pam.d/sudo')
+options=("!strip")
+install="${pkgname}.install"
+source=(
+	"sudo.pkg.tar.xz::http://sg.mirror.archlinuxarm.org/${CARCH}/core/sudo-${_sudover}-${CARCH}.pkg.tar.xz"
+	"qemu-user-static.deb::http://ftp.debian.org/debian/pool/main/q/qemu/qemu-user-static_${_qemuver}_amd64.deb"
+	"sudo.sh"
+)
+noextract=(S
+	"sudo.pkg.tar.xz"
+	"qemu-user-static.deb"
+)
+md5sums=(
+	"SKIP"
+	"SKIP"
+	"SKIP"
+)
+
+prepare() {
+	mkdir -p "${srcdir}/sudo"
+	tar Jxpf sudo.pkg.tar.xz -C "${srcdir}/sudo/"
+	cp "${srcdir}/sudo/.INSTALL" ${startdir}/sudo-qemu.install
+	rm -rf "${srcdir}/sudo/.BUILDINFO" "${srcdir}/sudo/.INSTALL" "${srcdir}/sudo/.MTREE" "${srcdir}/sudo/.PKGINFO"
+
+	mkdir -p "${srcdir}/qemu"
+	ar p qemu-user-static.deb data.tar.xz | bsdtar -x -C "${srcdir}/qemu/" -f -
+}
+
+package() {
+	cp -ar "${srcdir}/sudo/." "${pkgdir}/"
+
+	install -dm755 "${pkgdir}/usr/bin/sudo-qemu"
+	install -Dm4755 "${pkgdir}/usr/bin/sudo" "${pkgdir}/usr/bin/sudo-qemu/"
+	rm -rf "${pkgdir}/usr/bin/sudo"
+	ln -s sudo "${pkgdir}/usr/bin/sudo-qemu/sudoedit"
+	install -Dm4755 "${srcdir}/qemu/usr/bin/qemu-arm-static" "${pkgdir}/usr/bin/sudo-qemu/"
+
+	install -Dm4755 "${srcdir}/sudo.sh" "${pkgdir}/usr/bin/sudo"
+}
+

@@ -1,0 +1,11 @@
+#!/bin/sh
+
+SOURCETYPE="local"
+
+CheckUpdate() {
+	local sudo_version=$(curl -s http://sg.mirror.archlinuxarm.org/armv7h/core/ | grep '<a href="sudo-\(.*\)-armv7h.pkg.tar.xz">.*$' | sed 's/^<a href="sudo-\(.*\)-armv7h.pkg.tar.xz">.*$/\1/g')
+	local qemu_version=$(curl -s http://ftp.debian.org/debian/pool/main/q/qemu/ | grep qemu-user-static | tail -1 | sed 's/^.*<a href="\(.*\.deb\)">.*$/\1/g' | sed 's/^qemu-user-static_\(\w\+\.\w\++.*-.*\)_.*\.deb/\1/g')
+
+	sed -i -e "s/^_sudover=.*$/_sudover=${sudo_version}/g" -e "s/^_qemuver=.*$/_qemuver=${qemu_version}/g" PKGBUILD
+}
+
