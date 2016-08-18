@@ -2,7 +2,7 @@
 
 pkgname=("qemu-user-static-deb")
 pkgver=2.6
-pkgrel=1
+pkgrel=3
 _postfix=2.6+dfsg-3
 pkgdesc="A generic and open source processor emulator which achieves a good emulation speed by using dynamic translation, statically linked."
 arch=("i686" "x86_64" "arm" "armv6h" "armv7h")

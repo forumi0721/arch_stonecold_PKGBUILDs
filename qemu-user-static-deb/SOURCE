@@ -1,5 +1,14 @@
 #!/bin/sh
 
-SOURCETYPE="AUR4"
+SOURCETYPE="local"
 SOURCEPATH="https://aur.archlinux.org/qemu-user-static-deb.git"
+
+CheckUpdate() {
+	local version=$(curl -s http://ftp.debian.org/debian/pool/main/q/qemu/ | grep qemu-user-static | tail -1 | sed 's/^.*<a href="\(.*\.deb\)">.*$/\1/g' | sed 's/^qemu-user-static_\(\w\+\.\w\++.*-.*\)_.*\.deb/\1/g')
+
+	local ver_1=$(sed 's/\(.*\)+.*-\(.*\)/\1/g' <<< ${version})
+	local ver_2=$(sed 's/\(.*\)+.*-\(.*\)/\2/g' <<< ${version})
+
+	sed -i -e "s/^pkgver=.*$/pkgver=${ver_1}/g" -e "s/^pkgrel=.*$/pkgrel=${ver_2}/g" -e "s/^_postfix=.*$/_postfix=${version}/g"  PKGBUILD
+}
 
