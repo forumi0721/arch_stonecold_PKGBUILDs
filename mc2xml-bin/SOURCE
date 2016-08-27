@@ -1,6 +1,6 @@
 #!/bin/sh
 
-LOCALPKGVER="Y"
+HOLDPKGVER="Y"
 SOURCETYPE="local"
 SOURCEPATH="ssh://aur@aur.archlinux.org/mc2xml-bin.git"
 

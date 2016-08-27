@@ -1,4 +1,4 @@
 #!/bin/sh
 
-LOCALPKGVER="Y"
+HOLDPKGVER="Y"
 SOURCETYPE="local"

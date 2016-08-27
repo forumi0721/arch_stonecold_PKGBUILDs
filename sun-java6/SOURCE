@@ -1,6 +1,6 @@
 #!/bin/sh
 
-LOCALPKGVER="Y"
+HOLDPKGVER="Y"
 SOURCETYPE="AUR"
 #SOURCEPATH="https://aur.archlinux.org/packages/su/sun-java6/sun-java6.tar.gz"
 
